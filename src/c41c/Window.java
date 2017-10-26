@@ -139,7 +139,6 @@ public class Window extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("C41C");
-        setPreferredSize(new java.awt.Dimension(400, 405));
         setSize(new java.awt.Dimension(386, 373));
 
         PANEL_base.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -664,23 +663,52 @@ public class Window extends javax.swing.JFrame {
         BUTTON_divide.setText("/");
         BUTTON_divide.setToolTipText("");
         BUTTON_divide.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_divide.setName("/"); // NOI18N
+        BUTTON_divide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_multiply.setText("*");
         BUTTON_multiply.setToolTipText("");
         BUTTON_multiply.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_multiply.setName("*"); // NOI18N
+        BUTTON_multiply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_minus.setText("-");
         BUTTON_minus.setToolTipText("");
         BUTTON_minus.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_minus.setName("-"); // NOI18N
+        BUTTON_minus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_plus.setText("+");
         BUTTON_plus.setToolTipText("");
         BUTTON_plus.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_plus.setName("+"); // NOI18N
+        BUTTON_plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_equal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         BUTTON_equal.setText("=");
         BUTTON_equal.setToolTipText("");
         BUTTON_equal.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_equal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_equalActionPerformed(evt);
+            }
+        });
 
         BUTTON_dot.setText(".");
         BUTTON_dot.setToolTipText("");
@@ -860,15 +888,15 @@ public class Window extends javax.swing.JFrame {
         BUTTON_CC.setText("C");
         BUTTON_CC.setToolTipText("");
         BUTTON_CC.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        BUTTON_CC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTTON_ClearCurrentActionPerformed(evt);
-            }
-        });
 
         BUTTON_CE.setText("CE");
         BUTTON_CE.setToolTipText("");
         BUTTON_CE.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_CE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_ClearCurrentActionPerformed(evt);
+            }
+        });
 
         BUTTON_MR.setText("MR");
         BUTTON_MR.setToolTipText("");
@@ -987,7 +1015,7 @@ public class Window extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PANEL_Bits, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1121,24 +1149,65 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_RadioB_Group_base_ActionPerformed
 
     private void BUTTON_AddDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_AddDigitActionPerformed
+        if (DivisionByZero)
+            return;
         JButton button = (JButton) evt.getSource();
-        Value = Value.multiply(new BigInteger(Integer.toString(Base)));
-        Value = Value.add(new BigInteger(button.getName(), Base));
+        if(!OperationUnderway) {
+            Value = Value.multiply(new BigInteger(Integer.toString(Base)));
+            Value = Value.add(new BigInteger(button.getName(), Base));
+        } else {
+            if (!SecondOperandEntered) {
+                SecondOperator = BigInteger.ZERO;
+                SecondOperandEntered = true;
+            }
+            SecondOperator = SecondOperator.multiply(new BigInteger(Integer.toString(Base)));
+            SecondOperator = SecondOperator.add(new BigInteger(button.getName(), Base));
+        }
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_AddDigitActionPerformed
 
     private void BUTTON_RemoveDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_RemoveDigitActionPerformed
-        Value = Value.divide(new BigInteger(Integer.toString(Base)));
+        if (DivisionByZero)
+            return;
+        if (OperationUnderway && !SecondOperandEntered)
+            return;
+
+        if(!OperationUnderway)
+            Value = Value.divide(new BigInteger(Integer.toString(Base)));
+        else
+            SecondOperator = SecondOperator.divide(new BigInteger(Integer.toString(Base)));
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
 
     private void BUTTON_ClearCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearCurrentActionPerformed
-        Value = BigInteger.ZERO;
+        if(!OperationUnderway)
+            Value = BigInteger.ZERO;
+        else
+            SecondOperator = BigInteger.ZERO;
+        DivisionByZero = false;
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_ClearCurrentActionPerformed
+
+    private void BUTTON_OperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_OperationActionPerformed
+        if (DivisionByZero)
+            return;
+        if (SecondOperandEntered)
+            performOperation();
+        JButton button = (JButton) evt.getSource();
+        Operation = button.getName();
+        SecondOperator = Value;
+        OperationUnderway = true;
+
+        System.out.println(Operation);
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_OperationActionPerformed
+
+    private void BUTTON_equalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_equalActionPerformed
+        performOperation();
+    }//GEN-LAST:event_BUTTON_equalActionPerformed
 
     private void bitSwitch(JLabel bitLabel) {
         String bit = bitLabel.getText();
@@ -1146,10 +1215,26 @@ public class Window extends javax.swing.JFrame {
 
         BigInteger value = BigInteger.ONE.shiftLeft(bitPos);
         if(bit.equals("1")) {
-            Value = Value.subtract(value);
+            if(!OperationUnderway)
+                Value = Value.subtract(value);
+            else {
+                if (!SecondOperandEntered) {
+                    SecondOperator = BigInteger.ZERO;
+                    SecondOperandEntered = true;
+                }
+                SecondOperator = SecondOperator.subtract(value);
+            }
             bitLabel.setText("0");
         } else if(bit.equals("0")) {
-            Value = Value.add(value);
+            if(!OperationUnderway)
+                Value = Value.add(value);
+            else {
+                if (!SecondOperandEntered) {
+                    SecondOperator = BigInteger.ZERO;
+                    SecondOperandEntered = true;
+                }
+                SecondOperator = SecondOperator.add(value);
+            }
             bitLabel.setText("1");
         }
 
@@ -1157,8 +1242,39 @@ public class Window extends javax.swing.JFrame {
         refreshTextArea();
     }
 
+    private void performOperation() {
+        SecondOperandEntered = false;
+        OperationUnderway = false;
+        switch(Operation) {
+            case "+":
+                Value = Value.add(SecondOperator);
+                break;
+            case "-":
+                Value = Value.subtract(SecondOperator);
+                break;
+            case "*":
+                Value = Value.multiply(SecondOperator);
+                break;
+            case "/":
+                if(SecondOperator.equals(BigInteger.ZERO)) {
+                    TextPane.setText("Division by zero is undefined.");
+                    DivisionByZero = true;
+                    Operation = "";
+                    return;
+                }
+                Value = Value.divide(SecondOperator);
+                break;
+            default:
+                return;
+        }
+        refreshTextArea();
+    }
+
     private void refreshTextArea() {
-        TextPane.setText(Value.toString(Base));
+        String out = Value.toString(Base);
+        if (OperationUnderway)
+            out += '\n' + Operation + '\n' + SecondOperator.toString(Base);
+        TextPane.setText(out);
     }
 
     /**
@@ -1279,7 +1395,12 @@ public class Window extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     // My variables
     private BigInteger Value = BigInteger.ZERO;
+    private BigInteger SecondOperator = BigInteger.ZERO;
     private int Base = 10;
+    private boolean SecondOperandEntered = false;
+    private boolean OperationUnderway = false;
+    private boolean DivisionByZero = false;
+    private String Operation = "";
 
     private ArrayList<JButton> numberButtons = new ArrayList<JButton>();
 }
