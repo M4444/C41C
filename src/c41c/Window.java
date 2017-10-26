@@ -6,6 +6,8 @@
 
 package c41c;
 
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -45,6 +47,8 @@ public class Window extends javax.swing.JFrame {
         StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_RIGHT);
         StyleConstants.setFontSize(attribs, 18);
         TextPane.setParagraphAttributes(attribs, rootPaneCheckingEnabled);
+        // Set Key Dispatcher
+        addKeyDispatcher();
         // Set app location
         this.setLocationRelativeTo(null);
     }
@@ -1075,6 +1079,99 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addKeyDispatcher() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher((KeyEvent e) -> {
+            if (e.getID()==KeyEvent.KEY_PRESSED){
+                System.out.println("Key Code: " + e.getKeyCode());
+                switch(e.getKeyCode()) {
+                    case 27:
+                        System.out.println("Esc");
+                        break;
+                    case 8:
+                        BUTTON_backspace.doClick();
+                        break;
+                    case 107:
+                        BUTTON_plus.doClick();
+                        break;
+                    case 109:
+                    case 45:
+                        BUTTON_minus.doClick();
+                        break;
+                    case 106:
+                        BUTTON_multiply.doClick();
+                        break;
+                    case 111:
+                        BUTTON_divide.doClick();
+                        break;
+                    case 10:
+                    case 61:
+                        BUTTON_equal.doClick();
+                        break;
+                    case '0':
+                    case '0' + 48:
+                        BUTTON_0.doClick();
+                        break;
+                    case '1':
+                    case '1' + 48:
+                        BUTTON_1.doClick();
+                        break;
+                    case '2':
+                    case '2' + 48:
+                        BUTTON_2.doClick();
+                        break;
+                    case '3':
+                    case '3' + 48:
+                        BUTTON_3.doClick();
+                        break;
+                    case '4':
+                    case '4' + 48:
+                        BUTTON_4.doClick();
+                        break;
+                    case '5':
+                    case '5' + 48:
+                        BUTTON_5.doClick();
+                        break;
+                    case '6':
+                    case '6' + 48:
+                        BUTTON_6.doClick();
+                        break;
+                    case '7':
+                    case '7' + 48:
+                        BUTTON_7.doClick();
+                        break;
+                    case '8':
+                    case '8' + 48:
+                        BUTTON_8.doClick();
+                        break;
+                    case '9':
+                    case '9' + 48:
+                        BUTTON_9.doClick();
+                        break;
+                    case 'A':
+                        BUTTON_A.doClick();
+                        break;
+                    case 'B':
+                        BUTTON_B.doClick();
+                        break;
+                    case 'C':
+                        BUTTON_C.doClick();
+                        break;
+                    case 'D':
+                        BUTTON_D.doClick();
+                        break;
+                    case 'E':
+                        BUTTON_E.doClick();
+                        break;
+                    case 'F':
+                        BUTTON_F.doClick();
+                        break;
+                }
+                //Return 'true' if you want to discard the event.
+                return true;
+            }
+            return false;
+        });
+    }
     private void LABEL_bitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LABEL_bitMousePressed
         //jTextArea1.append(evt.paramString());
         //System.out.println(evt.paramString());
