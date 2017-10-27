@@ -6,8 +6,6 @@
 
 package c41c;
 
-import java.awt.Component;
-import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -42,10 +40,12 @@ public class Window extends javax.swing.JFrame {
         numberButtons.add(BUTTON_E);
         numberButtons.add(BUTTON_F);
         initComponents();
+        // Set text pane atrributes
         SimpleAttributeSet attribs = new SimpleAttributeSet();
         StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_RIGHT);
         StyleConstants.setFontSize(attribs, 18);
         TextPane.setParagraphAttributes(attribs, rootPaneCheckingEnabled);
+        // Set app location
         this.setLocationRelativeTo(null);
     }
 
@@ -186,10 +186,13 @@ public class Window extends javax.swing.JFrame {
         PANEL_base.setLayout(PANEL_baseLayout);
         PANEL_baseLayout.setHorizontalGroup(
             PANEL_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RadioB_Hex)
-            .addComponent(RadioB_Dec)
-            .addComponent(RadioB_Oct)
-            .addComponent(RadioB_Bin)
+            .addGroup(PANEL_baseLayout.createSequentialGroup()
+                .addGroup(PANEL_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RadioB_Hex)
+                    .addComponent(RadioB_Dec)
+                    .addComponent(RadioB_Oct)
+                    .addComponent(RadioB_Bin))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         PANEL_baseLayout.setVerticalGroup(
             PANEL_baseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -624,9 +627,11 @@ public class Window extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        TextPane.setEditable(false);
         TextPane.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         TextPane.setText("0");
         TextPane.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TextPane.setFocusable(false);
         ScrollPane.setViewportView(TextPane);
 
         BUTTON_M_minus.setText("M-");
@@ -635,14 +640,17 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_sqrt.setText("√");
         BUTTON_sqrt.setToolTipText("");
+        BUTTON_sqrt.setEnabled(false);
         BUTTON_sqrt.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
         BUTTON_percent.setText("%");
         BUTTON_percent.setToolTipText("");
+        BUTTON_percent.setEnabled(false);
         BUTTON_percent.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
         BUTTON_reciprocal.setText("1/x");
         BUTTON_reciprocal.setToolTipText("");
+        BUTTON_reciprocal.setEnabled(false);
         BUTTON_reciprocal.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
         BUTTON_M_plus.setText("M+");
@@ -676,12 +684,18 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_dot.setText(".");
         BUTTON_dot.setToolTipText("");
+        BUTTON_dot.setEnabled(false);
         BUTTON_dot.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
         BUTTON_0.setText("0");
         BUTTON_0.setToolTipText("");
         BUTTON_0.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_0.setName("0"); // NOI18N
+        BUTTON_0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_AddDigitActionPerformed(evt);
+            }
+        });
 
         BUTTON_1.setText("1");
         BUTTON_1.setToolTipText("");
@@ -891,7 +905,7 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
