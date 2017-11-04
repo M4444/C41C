@@ -22,6 +22,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="C41C"/>
+    <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[386, 373]"/>
     </Property>
@@ -51,7 +52,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ScrollPane" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="PANEL_base" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="PANEL_base" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="ComboBox" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -208,7 +212,11 @@
                                   <Component id="BUTTON_D" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="PANEL_base" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="PANEL_base" min="-2" pref="96" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ComboBox" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -463,9 +471,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="0" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit1">
           <Properties>
@@ -475,9 +480,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="1" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit2">
           <Properties>
@@ -487,9 +489,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="2" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit3">
           <Properties>
@@ -500,9 +499,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="3" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit4">
           <Properties>
@@ -513,9 +509,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="4" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit5">
           <Properties>
@@ -525,9 +518,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="5" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit6">
           <Properties>
@@ -537,9 +527,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="6" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit7">
           <Properties>
@@ -550,9 +537,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="7" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit8">
           <Properties>
@@ -563,9 +547,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="8" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit9">
           <Properties>
@@ -575,9 +556,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="9" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit10">
           <Properties>
@@ -587,9 +565,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="10" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit11">
           <Properties>
@@ -600,9 +575,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="11" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit12">
           <Properties>
@@ -613,9 +585,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="12" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit13">
           <Properties>
@@ -625,9 +594,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="13" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit14">
           <Properties>
@@ -637,9 +603,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="14" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit15">
           <Properties>
@@ -650,9 +613,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="15" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit16">
           <Properties>
@@ -663,9 +623,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="16" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit17">
           <Properties>
@@ -675,9 +632,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="17" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit18">
           <Properties>
@@ -687,9 +641,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="18" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit19">
           <Properties>
@@ -700,9 +651,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="19" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit20">
           <Properties>
@@ -713,9 +661,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="20" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit21">
           <Properties>
@@ -725,9 +670,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="21" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit22">
           <Properties>
@@ -737,9 +679,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="22" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit23">
           <Properties>
@@ -750,9 +689,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="23" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit24">
           <Properties>
@@ -763,9 +699,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="24" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit25">
           <Properties>
@@ -775,9 +708,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="25" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit26">
           <Properties>
@@ -787,9 +717,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="26" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit27">
           <Properties>
@@ -800,9 +727,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="27" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit28">
           <Properties>
@@ -813,9 +737,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="28" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit29">
           <Properties>
@@ -825,9 +746,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="29" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit30">
           <Properties>
@@ -837,9 +755,6 @@
             <Property name="text" type="java.lang.String" value="0"/>
             <Property name="name" type="java.lang.String" value="30" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="LABEL_bit31">
           <Properties>
@@ -850,9 +765,6 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="31" noResource="true"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LABEL_bitMousePressed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -1288,6 +1200,28 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_RemoveDigitActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="ComboBox">
+      <Properties>
+        <Property name="editable" type="boolean" value="true"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="6">
+            <StringItem index="0" value="8"/>
+            <StringItem index="1" value="16"/>
+            <StringItem index="2" value="32"/>
+            <StringItem index="3" value="64"/>
+            <StringItem index="4" value="128"/>
+            <StringItem index="5" value="256"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComboBoxActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

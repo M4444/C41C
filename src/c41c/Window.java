@@ -8,10 +8,15 @@ package c41c;
 
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.*;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.LayoutStyle;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -25,6 +30,7 @@ public class Window extends javax.swing.JFrame {
      * Creates new form Window
      */
     public Window() {
+        LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
         numberButtons.add(BUTTON_0);
         numberButtons.add(BUTTON_1);
         numberButtons.add(BUTTON_2);
@@ -42,6 +48,7 @@ public class Window extends javax.swing.JFrame {
         numberButtons.add(BUTTON_E);
         numberButtons.add(BUTTON_F);
         initComponents();
+        myInitComponets();
         // Set text pane atrributes
         SimpleAttributeSet attribs = new SimpleAttributeSet();
         StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_RIGHT);
@@ -137,12 +144,14 @@ public class Window extends javax.swing.JFrame {
         BUTTON_MR = new javax.swing.JButton();
         BUTTON_MC = new javax.swing.JButton();
         BUTTON_backspace = new javax.swing.JButton();
+        ComboBox = new javax.swing.JComboBox<>();
         MenuBar = new javax.swing.JMenuBar();
         MENU_View = new javax.swing.JMenu();
         MENU_Edit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("C41C");
+        setResizable(false);
         setSize(new java.awt.Dimension(386, 373));
 
         PANEL_base.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -215,305 +224,145 @@ public class Window extends javax.swing.JFrame {
         LABEL_bit0.setText("0");
         LABEL_bit0.setToolTipText("");
         LABEL_bit0.setName("0"); // NOI18N
-        LABEL_bit0.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit1.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit1.setText("0");
         LABEL_bit1.setName("1"); // NOI18N
-        LABEL_bit1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit2.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit2.setText("0");
         LABEL_bit2.setName("2"); // NOI18N
-        LABEL_bit2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit3.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit3.setText("0");
         LABEL_bit3.setToolTipText("");
         LABEL_bit3.setName("3"); // NOI18N
-        LABEL_bit3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit4.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit4.setText("0");
         LABEL_bit4.setToolTipText("");
         LABEL_bit4.setName("4"); // NOI18N
-        LABEL_bit4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit5.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit5.setText("0");
         LABEL_bit5.setName("5"); // NOI18N
-        LABEL_bit5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit6.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit6.setText("0");
         LABEL_bit6.setName("6"); // NOI18N
-        LABEL_bit6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit7.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit7.setText("0");
         LABEL_bit7.setToolTipText("");
         LABEL_bit7.setName("7"); // NOI18N
-        LABEL_bit7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit8.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit8.setText("0");
         LABEL_bit8.setToolTipText("");
         LABEL_bit8.setName("8"); // NOI18N
-        LABEL_bit8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit9.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit9.setText("0");
         LABEL_bit9.setName("9"); // NOI18N
-        LABEL_bit9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit10.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit10.setText("0");
         LABEL_bit10.setName("10"); // NOI18N
-        LABEL_bit10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit11.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit11.setText("0");
         LABEL_bit11.setToolTipText("");
         LABEL_bit11.setName("11"); // NOI18N
-        LABEL_bit11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit12.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit12.setText("0");
         LABEL_bit12.setToolTipText("");
         LABEL_bit12.setName("12"); // NOI18N
-        LABEL_bit12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit13.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit13.setText("0");
         LABEL_bit13.setName("13"); // NOI18N
-        LABEL_bit13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit14.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit14.setText("0");
         LABEL_bit14.setName("14"); // NOI18N
-        LABEL_bit14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit15.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit15.setText("0");
         LABEL_bit15.setToolTipText("");
         LABEL_bit15.setName("15"); // NOI18N
-        LABEL_bit15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit16.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit16.setText("0");
         LABEL_bit16.setToolTipText("");
         LABEL_bit16.setName("16"); // NOI18N
-        LABEL_bit16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit17.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit17.setText("0");
         LABEL_bit17.setName("17"); // NOI18N
-        LABEL_bit17.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit18.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit18.setText("0");
         LABEL_bit18.setName("18"); // NOI18N
-        LABEL_bit18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit19.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit19.setText("0");
         LABEL_bit19.setToolTipText("");
         LABEL_bit19.setName("19"); // NOI18N
-        LABEL_bit19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit20.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit20.setText("0");
         LABEL_bit20.setToolTipText("");
         LABEL_bit20.setName("20"); // NOI18N
-        LABEL_bit20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit21.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit21.setText("0");
         LABEL_bit21.setName("21"); // NOI18N
-        LABEL_bit21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit22.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit22.setText("0");
         LABEL_bit22.setName("22"); // NOI18N
-        LABEL_bit22.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit23.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit23.setText("0");
         LABEL_bit23.setToolTipText("");
         LABEL_bit23.setName("23"); // NOI18N
-        LABEL_bit23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit24.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit24.setText("0");
         LABEL_bit24.setToolTipText("");
         LABEL_bit24.setName("24"); // NOI18N
-        LABEL_bit24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit25.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit25.setText("0");
         LABEL_bit25.setName("25"); // NOI18N
-        LABEL_bit25.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit26.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit26.setText("0");
         LABEL_bit26.setName("26"); // NOI18N
-        LABEL_bit26.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit27.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit27.setText("0");
         LABEL_bit27.setToolTipText("");
         LABEL_bit27.setName("27"); // NOI18N
-        LABEL_bit27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit28.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit28.setText("0");
         LABEL_bit28.setToolTipText("");
         LABEL_bit28.setName("28"); // NOI18N
-        LABEL_bit28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit29.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit29.setText("0");
         LABEL_bit29.setName("29"); // NOI18N
-        LABEL_bit29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit30.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit30.setText("0");
         LABEL_bit30.setName("30"); // NOI18N
-        LABEL_bit30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         LABEL_bit31.setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
         LABEL_bit31.setText("0");
         LABEL_bit31.setToolTipText("");
         LABEL_bit31.setName("31"); // NOI18N
-        LABEL_bit31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                LABEL_bitMousePressed(evt);
-            }
-        });
 
         javax.swing.GroupLayout PANEL_BitsLayout = new javax.swing.GroupLayout(PANEL_Bits);
         PANEL_Bits.setLayout(PANEL_BitsLayout);
@@ -920,6 +769,15 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        ComboBox.setEditable(true);
+        ComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "16", "32", "64", "128", "256" }));
+        ComboBox.setSelectedIndex(3);
+        ComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxActionPerformed(evt);
+            }
+        });
+
         MENU_View.setText("View");
         MenuBar.add(MENU_View);
 
@@ -937,7 +795,9 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -1063,7 +923,10 @@ public class Window extends javax.swing.JFrame {
                                     .addComponent(BUTTON_5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BUTTON_4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BUTTON_D, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1079,16 +942,49 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void myInitComponets() {
+        for (int i = 0; i < TOTAL_BIT_NUM; i++) {
+            LABEL_bitGroup[i] = new JLabel();
+
+            LABEL_bitGroup[i].setFont(new java.awt.Font("DejaVu Sans Mono", 0, 14)); // NOI18N
+            LABEL_bitGroup[i].setText("0");
+            LABEL_bitGroup[i].setToolTipText(i + "");
+            LABEL_bitGroup[i].setName(i + ""); // NOI18N
+            LABEL_bitGroup[i].addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    LABEL_bitGroup_MousePressed(evt);
+                }
+            });
+        }
+
+        changeNumberOfBits(64);
+    }
+
+    void LABEL_bitGroup_MousePressed(MouseEvent evt) {
+        bitSwitch((JLabel)evt.getComponent());
+        System.out.println(evt.getComponent().getName());
+    }
+
     private void addKeyDispatcher() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher((KeyEvent e) -> {
             if (e.getID()==KeyEvent.KEY_PRESSED){
+                if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField") &&
+                    e.getKeyCode() != 27)
+                    return false;
                 System.out.println("Key Code: " + e.getKeyCode());
                 switch(e.getKeyCode()) {
+                    default:
+                        return false;
                     case 27:
                         System.out.println("Esc");
+                        requestFocus();
                         break;
                     case 8:
                         BUTTON_backspace.doClick();
+                        break;
+                    case 10:
+                    case 61:
+                        BUTTON_equal.doClick();
                         break;
                     case 107:
                         BUTTON_plus.doClick();
@@ -1102,10 +998,6 @@ public class Window extends javax.swing.JFrame {
                         break;
                     case 111:
                         BUTTON_divide.doClick();
-                        break;
-                    case 10:
-                    case 61:
-                        BUTTON_equal.doClick();
                         break;
                     case '0':
                     case '0' + 48:
@@ -1172,13 +1064,6 @@ public class Window extends javax.swing.JFrame {
             return false;
         });
     }
-    private void LABEL_bitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LABEL_bitMousePressed
-        //jTextArea1.append(evt.paramString());
-        //System.out.println(evt.paramString());
-
-        bitSwitch((JLabel)evt.getComponent());
-    }//GEN-LAST:event_LABEL_bitMousePressed
-
     private void disableButtonsForBase(int base) {
         // Disable all
         BUTTON_F.setEnabled(false);
@@ -1339,6 +1224,102 @@ public class Window extends javax.swing.JFrame {
         refreshTextArea();
     }
 
+    private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
+        JComboBox cb = (JComboBox)evt.getSource();
+        try {
+            int bitNum = Integer.parseInt((String)cb.getSelectedItem());
+            if (bitNum < 0)
+                throw new NumberFormatException("negative number");
+            if (bitNum > TOTAL_BIT_NUM) {
+                bitNum = TOTAL_BIT_NUM;
+                cb.setSelectedItem(TOTAL_BIT_NUM + "");
+            }
+            changeNumberOfBits(bitNum);
+            requestFocus();
+        } catch (NumberFormatException e) {
+            System.out.println("Bad bit length format");
+        }
+    }//GEN-LAST:event_ComboBoxActionPerformed
+
+    private void changeNumberOfBits(int bitNum) {
+        if (bitNum < 0)
+            return;
+        int rowNum = (int) Math.ceil(bitNum/32.0);
+        //setSize(386+16, 378+38+23*(rowNum-1));
+        setSize(386+6, 378+28+23*(rowNum-1));
+
+        PANEL_Bits.removeAll();
+
+        GroupLayout myPANEL_BitsLayout = new GroupLayout(PANEL_Bits);
+        PANEL_Bits.setLayout(myPANEL_BitsLayout);
+
+        // Horizontal group
+        SequentialGroup hsg = myPANEL_BitsLayout.createSequentialGroup();
+        hsg.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+
+        ParallelGroup hsg_pg = myPANEL_BitsLayout.createParallelGroup(Alignment.LEADING);
+        for (int r = 0; r < rowNum; r++) {
+            SequentialGroup hsg_pg_sg = myPANEL_BitsLayout.createSequentialGroup();
+
+            for (int i = 31; i >= 0; i--) {
+                if (i+r*32 >= bitNum)
+                    continue;
+                hsg_pg_sg.addComponent(LABEL_bitGroup[i+r*32]);
+                switch(i) {
+                    case 28:
+                    case 20:
+                    case 12:
+                    case 4:
+                        hsg_pg_sg.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+                        break;
+                    case 24:
+                    case 8:
+                        hsg_pg_sg.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED);
+                        break;
+                    case 16:
+                        hsg_pg_sg.addGap(18, 18, 18);
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        hsg_pg_sg.addGap(1, 1, 1);
+                        break;
+                }
+            }
+            hsg_pg.addGroup(Alignment.TRAILING, hsg_pg_sg);
+        }
+        hsg.addGroup(hsg_pg);
+        hsg.addContainerGap();
+
+        myPANEL_BitsLayout.setHorizontalGroup(
+            myPANEL_BitsLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(hsg));
+
+        // Vertical group
+        SequentialGroup vsg = myPANEL_BitsLayout.createSequentialGroup();
+        vsg.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        int i = bitNum-1;
+        for (int r = 0; r < rowNum; r++) {
+            if (r == 0)
+                vsg.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+            else
+                vsg.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED);
+
+            ParallelGroup vsg_pg = myPANEL_BitsLayout.createParallelGroup(Alignment.BASELINE);
+
+            while (i >= 32*(rowNum-1-r)) {
+                vsg_pg.addComponent(LABEL_bitGroup[i]);
+                i--;
+            }
+            vsg.addGroup(myPANEL_BitsLayout.createParallelGroup(Alignment.LEADING).addGroup(vsg_pg));
+        }
+        vsg.addContainerGap();
+
+        myPANEL_BitsLayout.setVerticalGroup(
+            myPANEL_BitsLayout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, vsg));
+    }
+
     private void performOperation() {
         SecondOperandEntered = false;
         OperationUnderway = false;
@@ -1445,6 +1426,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton BUTTON_plus_minus;
     private javax.swing.JButton BUTTON_reciprocal;
     private javax.swing.JButton BUTTON_sqrt;
+    private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JLabel LABEL_bit0;
     private javax.swing.JLabel LABEL_bit1;
     private javax.swing.JLabel LABEL_bit10;
@@ -1498,6 +1480,9 @@ public class Window extends javax.swing.JFrame {
     private boolean OperationUnderway = false;
     private boolean DivisionByZero = false;
     private String Operation = "";
+    // Bits
+    private static final int TOTAL_BIT_NUM = 256;
+    private JLabel[] LABEL_bitGroup;
 
     private ArrayList<JButton> numberButtons = new ArrayList<JButton>();
 }
