@@ -1197,30 +1197,11 @@ public class Window extends javax.swing.JFrame {
         String bit = bitLabel.getText();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        BigInteger value = BigInteger.ONE.shiftLeft(bitPos);
-        if(bit.equals("1")) {
-            if(!OperationUnderway)
-                Value = Value.subtract(value);
-            else {
-                if (!SecondOperandEntered) {
-                    SecondOperator = BigInteger.ZERO;
-                    SecondOperandEntered = true;
-                }
-                SecondOperator = SecondOperator.subtract(value);
-            }
-            bitLabel.setText("0");
-        } else if(bit.equals("0")) {
-            if(!OperationUnderway)
-                Value = Value.add(value);
-            else {
-                if (!SecondOperandEntered) {
-                    SecondOperator = BigInteger.ZERO;
-                    SecondOperandEntered = true;
-                }
-                SecondOperator = SecondOperator.add(value);
-            }
-            bitLabel.setText("1");
-        }
+        if(!OperationUnderway)
+            Value = Value.flipBit(bitPos);
+        else
+            SecondOperator = SecondOperator.flipBit(bitPos);
+        bitLabel.setText(bit.equals("1") ? "0" : "1");
 
         //setSize(new java.awt.Dimension(386, 396));
         refreshTextArea();
