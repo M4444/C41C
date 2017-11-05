@@ -1140,8 +1140,10 @@ public class Window extends javax.swing.JFrame {
         if(!OperationUnderway) {
             newValue = Value.multiply(new BigInteger(Integer.toString(Base)))
                             .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(CurrentMaxInt) < 0)
+            if (newValue.compareTo(CurrentMaxInt) < 0) {
                 Value = newValue;
+                changeAllBits(Value);
+            }
         } else {
             if (!SecondOperandEntered) {
                 SecondOperand = BigInteger.ZERO;
@@ -1149,8 +1151,10 @@ public class Window extends javax.swing.JFrame {
             }
             newValue = SecondOperand.multiply(new BigInteger(Integer.toString(Base)))
                                      .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(CurrentMaxInt) < 0)
+            if (newValue.compareTo(CurrentMaxInt) < 0) {
                 SecondOperand = newValue;
+                changeAllBits(SecondOperand);
+            }
         }
 
         refreshTextArea();
@@ -1162,10 +1166,13 @@ public class Window extends javax.swing.JFrame {
         if (OperationUnderway && !SecondOperandEntered)
             return;
 
-        if(!OperationUnderway)
+        if(!OperationUnderway) {
             Value = Value.divide(new BigInteger(Integer.toString(Base)));
-        else
+            changeAllBits(Value);
+        } else {
             SecondOperand = SecondOperand.divide(new BigInteger(Integer.toString(Base)));
+            changeAllBits(SecondOperand);
+        }
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
@@ -1175,6 +1182,7 @@ public class Window extends javax.swing.JFrame {
             Value = BigInteger.ZERO;
         else
             SecondOperand = BigInteger.ZERO;
+        changeAllBits(BigInteger.ZERO);
         DivisionByZero = false;
 
         refreshTextArea();
@@ -1213,6 +1221,11 @@ public class Window extends javax.swing.JFrame {
 
         //setSize(new java.awt.Dimension(386, 396));
         refreshTextArea();
+    }
+
+    private void changeAllBits(BigInteger value) {
+        for (int i = 0; i < CurrentMaxInt.bitLength(); i++)
+            LABEL_bitGroup[i].setText(value.testBit(i) ? "1" : "0");
     }
 
     private void testTextArea() {
@@ -1277,9 +1290,11 @@ public class Window extends javax.swing.JFrame {
             CurrentMaxInt = BigInteger.ONE.shiftLeft(bitNum-1);
         Value = Value.mod(CurrentMaxInt.shiftLeft(1));
         Value = adjustForOverflow(Value);
+        changeAllBits(Value);
         if(OperationUnderway) {
             SecondOperand = SecondOperand.mod(CurrentMaxInt.shiftLeft(1));
             SecondOperand = adjustForOverflow(SecondOperand);
+            changeAllBits(SecondOperand);
         }
         refreshTextArea();
 
@@ -1385,6 +1400,7 @@ public class Window extends javax.swing.JFrame {
                 return;
         }
         Value = adjustForOverflow(Value);
+        changeAllBits(Value);
 
         refreshTextArea();
     }
