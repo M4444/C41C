@@ -1136,16 +1136,21 @@ public class Window extends javax.swing.JFrame {
         if (DivisionByZero)
             return;
         JButton button = (JButton) evt.getSource();
+        BigInteger newValue;
         if(!OperationUnderway) {
-            Value = Value.multiply(new BigInteger(Integer.toString(Base)));
-            Value = Value.add(new BigInteger(button.getName(), Base));
+            newValue = Value.multiply(new BigInteger(Integer.toString(Base)))
+                            .add(new BigInteger(button.getName(), Base));
+            if (newValue.compareTo(CurrentMaxInt) < 0)
+                Value = newValue;
         } else {
             if (!SecondOperandEntered) {
                 SecondOperand = BigInteger.ZERO;
                 SecondOperandEntered = true;
             }
-            SecondOperand = SecondOperand.multiply(new BigInteger(Integer.toString(Base)));
-            SecondOperand = SecondOperand.add(new BigInteger(button.getName(), Base));
+            newValue = SecondOperand.multiply(new BigInteger(Integer.toString(Base)))
+                                     .add(new BigInteger(button.getName(), Base));
+            if (newValue.compareTo(CurrentMaxInt) < 0)
+                SecondOperand = newValue;
         }
 
         refreshTextArea();
@@ -1197,10 +1202,13 @@ public class Window extends javax.swing.JFrame {
         String bit = bitLabel.getText();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        if(!OperationUnderway)
+        if(!OperationUnderway) {
             Value = Value.flipBit(bitPos);
-        else
+            Value = adjustForOverflow(Value);
+        } else {
             SecondOperand = SecondOperand.flipBit(bitPos);
+            SecondOperand = adjustForOverflow(SecondOperand);
+        }
         bitLabel.setText(bit.equals("1") ? "0" : "1");
 
         //setSize(new java.awt.Dimension(386, 396));
@@ -1263,6 +1271,18 @@ public class Window extends javax.swing.JFrame {
     private void changeNumberOfBits(int bitNum) {
         if (bitNum < 0)
             return;
+        else if (bitNum == 0)
+            CurrentMaxInt = BigInteger.ONE;
+        else
+            CurrentMaxInt = BigInteger.ONE.shiftLeft(bitNum-1);
+        Value = Value.mod(CurrentMaxInt.shiftLeft(1));
+        Value = adjustForOverflow(Value);
+        if(OperationUnderway) {
+            SecondOperand = SecondOperand.mod(CurrentMaxInt.shiftLeft(1));
+            SecondOperand = adjustForOverflow(SecondOperand);
+        }
+        refreshTextArea();
+
         int rowNum = (int) Math.ceil(bitNum/32.0);
         //setSize(386+16, 378+38+23*(rowNum-1));
         setSize(386+6, 378+28+23*(rowNum-1));
@@ -1364,7 +1384,21 @@ public class Window extends javax.swing.JFrame {
             default:
                 return;
         }
+        Value = adjustForOverflow(Value);
+
         refreshTextArea();
+    }
+
+    private BigInteger adjustForOverflow(BigInteger value) {
+        BigInteger overflow = value.subtract(CurrentMaxInt);
+        BigInteger underflow = value.add(CurrentMaxInt);
+
+        if (overflow.compareTo(BigInteger.ZERO) >= 0)
+            value = overflow.subtract(CurrentMaxInt);
+        else if (underflow.compareTo(BigInteger.ZERO) < 0)
+            value = underflow.add(CurrentMaxInt);
+
+        return value;
     }
 
     private void refreshTextArea() {
@@ -1502,6 +1536,7 @@ public class Window extends javax.swing.JFrame {
     // Bits
     private static final int TOTAL_BIT_NUM = 256;
     private JLabel[] LABEL_bitGroup;
+    BigInteger CurrentMaxInt;
 
     private ArrayList<JButton> numberButtons = new ArrayList<JButton>();
 }
