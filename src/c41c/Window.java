@@ -147,6 +147,7 @@ public class Window extends javax.swing.JFrame {
         BUTTON_MC = new javax.swing.JButton();
         BUTTON_backspace = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
+        CHECK_BOX_signed = new javax.swing.JCheckBox();
         MenuBar = new javax.swing.JMenuBar();
         MENU_View = new javax.swing.JMenu();
         MENU_Edit = new javax.swing.JMenu();
@@ -785,6 +786,14 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        CHECK_BOX_signed.setSelected(true);
+        CHECK_BOX_signed.setText("signed");
+        CHECK_BOX_signed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CHECK_BOX_signedActionPerformed(evt);
+            }
+        });
+
         MENU_View.setText("View");
         MenuBar.add(MENU_View);
 
@@ -804,7 +813,8 @@ public class Window extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CHECK_BOX_signed))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -934,15 +944,20 @@ public class Window extends javax.swing.JFrame {
                                 .addComponent(PANEL_base, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(BUTTON_minus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BUTTON_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BUTTON_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BUTTON_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BUTTON_E, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(BUTTON_equal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(BUTTON_minus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BUTTON_3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BUTTON_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BUTTON_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BUTTON_E, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(BUTTON_equal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CHECK_BOX_signed)))))
                 .addContainerGap())
         );
 
@@ -1145,7 +1160,7 @@ public class Window extends javax.swing.JFrame {
         if(!OperationUnderway) {
             newValue = Value.multiply(new BigInteger(Integer.toString(Base)))
                             .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(CurrentMaxInt) < 0) {
+            if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
                 Value = newValue;
                 changeAllBits(Value);
             }
@@ -1156,7 +1171,7 @@ public class Window extends javax.swing.JFrame {
             }
             newValue = SecondOperand.multiply(new BigInteger(Integer.toString(Base)))
                                      .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(CurrentMaxInt) < 0) {
+            if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
                 SecondOperand = newValue;
                 changeAllBits(SecondOperand);
             }
@@ -1285,6 +1300,16 @@ public class Window extends javax.swing.JFrame {
             System.out.println("Bad bit length format");
         }
     }//GEN-LAST:event_ComboBoxActionPerformed
+
+    private void CHECK_BOX_signedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECK_BOX_signedActionPerformed
+        BUTTON_plus_minus.setEnabled(CHECK_BOX_signed.isSelected());
+
+        Value = adjustForOverflow(Value);
+        if (OperationUnderway)
+            SecondOperand = adjustForOverflow(SecondOperand);
+
+        refreshTextArea();
+    }//GEN-LAST:event_CHECK_BOX_signedActionPerformed
 
     private void BUTTON_plus_minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_plus_minusActionPerformed
         if (!OperationUnderway) {
@@ -1426,13 +1451,16 @@ public class Window extends javax.swing.JFrame {
     }
 
     private BigInteger adjustForOverflow(BigInteger value) {
-        BigInteger overflow = value.subtract(CurrentMaxInt);
-        BigInteger underflow = value.add(CurrentMaxInt);
+        boolean signed = CHECK_BOX_signed.isSelected();
+        BigInteger upperBound = signed ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
+        BigInteger lowerBound = signed ? CurrentMaxInt : BigInteger.ZERO;
+        BigInteger overflow = value.subtract(upperBound);
+        BigInteger underflow = value.add(lowerBound);
 
         if (overflow.compareTo(BigInteger.ZERO) >= 0)
-            value = overflow.subtract(CurrentMaxInt);
+            value = overflow.subtract(lowerBound);
         else if (underflow.compareTo(BigInteger.ZERO) < 0)
-            value = underflow.add(CurrentMaxInt);
+            value = underflow.add(upperBound);
 
         return value;
     }
@@ -1515,6 +1543,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton BUTTON_plus_minus;
     private javax.swing.JButton BUTTON_reciprocal;
     private javax.swing.JButton BUTTON_sqrt;
+    private javax.swing.JCheckBox CHECK_BOX_signed;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JLabel LABEL_bit0;
     private javax.swing.JLabel LABEL_bit1;

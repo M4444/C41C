@@ -55,6 +55,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="PANEL_base" min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="ComboBox" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="CHECK_BOX_signed" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -218,16 +219,24 @@
                               <Component id="ComboBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="BUTTON_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="BUTTON_3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="BUTTON_2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="BUTTON_1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="BUTTON_E" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                      <Component id="BUTTON_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="BUTTON_3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="BUTTON_2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="BUTTON_1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="BUTTON_E" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="BUTTON_equal" min="-2" pref="61" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="BUTTON_equal" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="CHECK_BOX_signed" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -1225,6 +1234,15 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="CHECK_BOX_signed">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="signed"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHECK_BOX_signedActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
