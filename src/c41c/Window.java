@@ -1141,11 +1141,11 @@ public class Window extends javax.swing.JFrame {
             Value = Value.add(new BigInteger(button.getName(), Base));
         } else {
             if (!SecondOperandEntered) {
-                SecondOperator = BigInteger.ZERO;
+                SecondOperand = BigInteger.ZERO;
                 SecondOperandEntered = true;
             }
-            SecondOperator = SecondOperator.multiply(new BigInteger(Integer.toString(Base)));
-            SecondOperator = SecondOperator.add(new BigInteger(button.getName(), Base));
+            SecondOperand = SecondOperand.multiply(new BigInteger(Integer.toString(Base)));
+            SecondOperand = SecondOperand.add(new BigInteger(button.getName(), Base));
         }
 
         refreshTextArea();
@@ -1160,7 +1160,7 @@ public class Window extends javax.swing.JFrame {
         if(!OperationUnderway)
             Value = Value.divide(new BigInteger(Integer.toString(Base)));
         else
-            SecondOperator = SecondOperator.divide(new BigInteger(Integer.toString(Base)));
+            SecondOperand = SecondOperand.divide(new BigInteger(Integer.toString(Base)));
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
@@ -1169,7 +1169,7 @@ public class Window extends javax.swing.JFrame {
         if(!OperationUnderway)
             Value = BigInteger.ZERO;
         else
-            SecondOperator = BigInteger.ZERO;
+            SecondOperand = BigInteger.ZERO;
         DivisionByZero = false;
 
         refreshTextArea();
@@ -1182,7 +1182,7 @@ public class Window extends javax.swing.JFrame {
             performOperation();
         JButton button = (JButton) evt.getSource();
         Operation = button.getName();
-        SecondOperator = Value;
+        SecondOperand = Value;
         OperationUnderway = true;
 
         System.out.println(Operation);
@@ -1200,7 +1200,7 @@ public class Window extends javax.swing.JFrame {
         if(!OperationUnderway)
             Value = Value.flipBit(bitPos);
         else
-            SecondOperator = SecondOperator.flipBit(bitPos);
+            SecondOperand = SecondOperand.flipBit(bitPos);
         bitLabel.setText(bit.equals("1") ? "0" : "1");
 
         //setSize(new java.awt.Dimension(386, 396));
@@ -1344,22 +1344,22 @@ public class Window extends javax.swing.JFrame {
         OperationUnderway = false;
         switch(Operation) {
             case "+":
-                Value = Value.add(SecondOperator);
+                Value = Value.add(SecondOperand);
                 break;
             case "-":
-                Value = Value.subtract(SecondOperator);
+                Value = Value.subtract(SecondOperand);
                 break;
             case "*":
-                Value = Value.multiply(SecondOperator);
+                Value = Value.multiply(SecondOperand);
                 break;
             case "/":
-                if(SecondOperator.equals(BigInteger.ZERO)) {
+                if(SecondOperand.equals(BigInteger.ZERO)) {
                     TextPane.setText("Division by zero is undefined.");
                     DivisionByZero = true;
                     Operation = "";
                     return;
                 }
-                Value = Value.divide(SecondOperator);
+                Value = Value.divide(SecondOperand);
                 break;
             default:
                 return;
@@ -1370,7 +1370,7 @@ public class Window extends javax.swing.JFrame {
     private void refreshTextArea() {
         String out = Value.toString(Base);
         if (OperationUnderway)
-            out += '\n' + Operation + '\n' + SecondOperator.toString(Base);
+            out += '\n' + Operation + '\n' + SecondOperand.toString(Base);
         TextPane.setText(out);
     }
 
@@ -1493,7 +1493,7 @@ public class Window extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     // My variables
     private BigInteger Value = BigInteger.ZERO;
-    private BigInteger SecondOperator = BigInteger.ZERO;
+    private BigInteger SecondOperand = BigInteger.ZERO;
     private int Base = 10;
     private boolean SecondOperandEntered = false;
     private boolean OperationUnderway = false;
