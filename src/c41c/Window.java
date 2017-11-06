@@ -32,7 +32,15 @@ public class Window extends javax.swing.JFrame {
      * Creates new form Window
      */
     public Window() {
+        Operation = "";
+        DivisionByZero = false;
+        OperationUnderway = false;
+        SecondOperandEntered = false;
+        Base = 10;
+        SecondOperand = BigInteger.ZERO;
+        Value = BigInteger.ZERO;
         LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
+
         numberButtons.add(BUTTON_0);
         numberButtons.add(BUTTON_1);
         numberButtons.add(BUTTON_2);
@@ -989,7 +997,7 @@ public class Window extends javax.swing.JFrame {
 
     private void addKeyDispatcher() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher((KeyEvent e) -> {
-            if (e.getID()==KeyEvent.KEY_PRESSED){
+            if (e.getID()==KeyEvent.KEY_PRESSED) {
                 if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField") &&
                     e.getKeyCode() != 27)
                     return false;
@@ -1157,7 +1165,7 @@ public class Window extends javax.swing.JFrame {
             return;
         JButton button = (JButton) evt.getSource();
         BigInteger newValue;
-        if(!OperationUnderway) {
+        if (!OperationUnderway) {
             newValue = Value.multiply(new BigInteger(Integer.toString(Base)))
                             .add(new BigInteger(button.getName(), Base));
             if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
@@ -1186,7 +1194,7 @@ public class Window extends javax.swing.JFrame {
         if (OperationUnderway && !SecondOperandEntered)
             return;
 
-        if(!OperationUnderway) {
+        if (!OperationUnderway) {
             Value = Value.divide(new BigInteger(Integer.toString(Base)));
             changeAllBits(Value);
         } else {
@@ -1198,7 +1206,7 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
 
     private void BUTTON_ClearCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearCurrentActionPerformed
-        if(!OperationUnderway)
+        if (!OperationUnderway)
             Value = BigInteger.ZERO;
         else
             SecondOperand = BigInteger.ZERO;
@@ -1230,7 +1238,7 @@ public class Window extends javax.swing.JFrame {
         String bit = bitLabel.getText();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        if(!OperationUnderway) {
+        if (!OperationUnderway) {
             Value = Value.flipBit(bitPos);
             Value = adjustForOverflow(Value);
         } else {
@@ -1336,7 +1344,7 @@ public class Window extends javax.swing.JFrame {
         Value = Value.mod(CurrentMaxInt.shiftLeft(1));
         Value = adjustForOverflow(Value);
         changeAllBits(Value);
-        if(OperationUnderway) {
+        if (OperationUnderway) {
             SecondOperand = SecondOperand.mod(CurrentMaxInt.shiftLeft(1));
             SecondOperand = adjustForOverflow(SecondOperand);
             changeAllBits(SecondOperand);
@@ -1433,7 +1441,7 @@ public class Window extends javax.swing.JFrame {
                 Value = Value.multiply(SecondOperand);
                 break;
             case "/":
-                if(SecondOperand.equals(BigInteger.ZERO)) {
+                if (SecondOperand.equals(BigInteger.ZERO)) {
                     TextPane.setText("Division by zero is undefined.");
                     DivisionByZero = true;
                     Operation = "";
@@ -1591,16 +1599,16 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup_base;
     // End of variables declaration//GEN-END:variables
     // My variables
-    private BigInteger Value = BigInteger.ZERO;
-    private BigInteger SecondOperand = BigInteger.ZERO;
-    private int Base = 10;
-    private boolean SecondOperandEntered = false;
-    private boolean OperationUnderway = false;
-    private boolean DivisionByZero = false;
-    private String Operation = "";
+    private BigInteger Value;
+    private BigInteger SecondOperand;
+    private int Base;
+    private boolean SecondOperandEntered;
+    private boolean OperationUnderway;
+    private boolean DivisionByZero;
+    private String Operation;
     // Bits
     private static final int TOTAL_BIT_NUM = 256;
-    private JLabel[] LABEL_bitGroup;
+    private final JLabel[] LABEL_bitGroup;
     BigInteger CurrentMaxInt;
 
     private ArrayList<JButton> numberButtons = new ArrayList<JButton>();
