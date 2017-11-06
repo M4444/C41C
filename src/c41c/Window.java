@@ -514,6 +514,11 @@ public class Window extends javax.swing.JFrame {
         BUTTON_plus_minus.setText("±");
         BUTTON_plus_minus.setToolTipText("");
         BUTTON_plus_minus.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_plus_minus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_plus_minusActionPerformed(evt);
+            }
+        });
 
         BUTTON_divide.setText("/");
         BUTTON_divide.setToolTipText("");
@@ -1280,6 +1285,21 @@ public class Window extends javax.swing.JFrame {
             System.out.println("Bad bit length format");
         }
     }//GEN-LAST:event_ComboBoxActionPerformed
+
+    private void BUTTON_plus_minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_plus_minusActionPerformed
+        if (!OperationUnderway) {
+            if (Value.compareTo(CurrentMaxInt.negate()) != 0) {
+                Value = Value.negate();
+                changeAllBits(Value);
+            }
+        } else
+            if (SecondOperand.compareTo(CurrentMaxInt.negate()) != 0) {
+                SecondOperand = SecondOperand.negate();
+                changeAllBits(SecondOperand);
+            }
+
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
 
     private void changeNumberOfBits(int bitNum) {
         if (bitNum < 0)
