@@ -991,7 +991,21 @@ public class Window extends javax.swing.JFrame {
     }
 
     void LABEL_bitGroup_MousePressed(MouseEvent evt) {
-        bitSwitch((JLabel)evt.getComponent());
+        JLabel bitLabel = (JLabel)evt.getComponent();
+        int bitPos = Integer.parseInt(bitLabel.getName());
+
+        if (!OperationUnderway) {
+            Value = Value.flipBit(bitPos);
+            Value = adjustForOverflow(Value);
+        } else {
+            SecondOperand = SecondOperand.flipBit(bitPos);
+            SecondOperand = adjustForOverflow(SecondOperand);
+        }
+        bitLabel.setText(bitLabel.getText().equals("1") ? "0" : "1");
+
+        //setSize(new java.awt.Dimension(386, 396));
+        refreshTextArea();
+
         System.out.println(evt.getComponent().getName());
     }
 
@@ -1233,23 +1247,6 @@ public class Window extends javax.swing.JFrame {
     private void BUTTON_equalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_equalActionPerformed
         performOperation();
     }//GEN-LAST:event_BUTTON_equalActionPerformed
-
-    private void bitSwitch(JLabel bitLabel) {
-        String bit = bitLabel.getText();
-        int bitPos = Integer.parseInt(bitLabel.getName());
-
-        if (!OperationUnderway) {
-            Value = Value.flipBit(bitPos);
-            Value = adjustForOverflow(Value);
-        } else {
-            SecondOperand = SecondOperand.flipBit(bitPos);
-            SecondOperand = adjustForOverflow(SecondOperand);
-        }
-        bitLabel.setText(bit.equals("1") ? "0" : "1");
-
-        //setSize(new java.awt.Dimension(386, 396));
-        refreshTextArea();
-    }
 
     private void changeAllBits(BigInteger value) {
         for (int i = 0; i < CurrentMaxInt.bitLength(); i++)
