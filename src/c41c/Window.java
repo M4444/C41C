@@ -1248,47 +1248,6 @@ public class Window extends javax.swing.JFrame {
         performOperation();
     }//GEN-LAST:event_BUTTON_equalActionPerformed
 
-    private void changeAllBits(BigInteger value) {
-        for (int i = 0; i < CurrentMaxInt.bitLength(); i++)
-            LABEL_bitGroup[i].setText(value.testBit(i) ? "1" : "0");
-    }
-
-    private void testTextArea() {
-        long start=System.currentTimeMillis();
-
-        int value = 0;
-        Document doc = new javax.swing.text.DefaultStyledDocument();
-        if (false)
-            for (int i = 0; i < 100000; i++) {
-                Value = Value.add(BigInteger.ONE);
-                refreshTextArea();
-            }
-        else
-            for (int i = 0; i < 100000; i++) {
-                value++;
-                //doc.insertString(Base, Operation, a);
-                //TextPane.setText(value + "");
-                try {
-                    doc.remove(0, doc.getLength());
-                    doc.insertString(0, value + "", null);
-                } catch (BadLocationException ex) {
-                    System.out.println("Document: Bad Location error");
-                }
-                TextPane.setDocument(doc);
-            }
-
-        long end=System.currentTimeMillis();
-        System.out.println("time = "+(end-start));
-        try {
-            doc = TextPane.getDocument();
-            System.out.println(doc.getText(0, doc.getLength()));
-            System.out.println(doc.getText(0, doc.getLength()/2));
-            System.out.println("doc length: " + doc.getLength());
-        } catch (BadLocationException ex) {
-            System.out.println("Document: Bad Location error");
-        }
-    }
-
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
         JComboBox cb = (JComboBox)evt.getSource();
         try {
@@ -1330,6 +1289,47 @@ public class Window extends javax.swing.JFrame {
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
+
+    private void testTextArea() {
+        long start=System.currentTimeMillis();
+
+        int value = 0;
+        Document doc = new javax.swing.text.DefaultStyledDocument();
+        if (false)
+            for (int i = 0; i < 100000; i++) {
+                Value = Value.add(BigInteger.ONE);
+                refreshTextArea();
+            }
+        else
+            for (int i = 0; i < 100000; i++) {
+                value++;
+                //doc.insertString(Base, Operation, a);
+                //TextPane.setText(value + "");
+                try {
+                    doc.remove(0, doc.getLength());
+                    doc.insertString(0, value + "", null);
+                } catch (BadLocationException ex) {
+                    System.out.println("Document: Bad Location error");
+                }
+                TextPane.setDocument(doc);
+            }
+
+        long end=System.currentTimeMillis();
+        System.out.println("time = "+(end-start));
+        try {
+            doc = TextPane.getDocument();
+            System.out.println(doc.getText(0, doc.getLength()));
+            System.out.println(doc.getText(0, doc.getLength()/2));
+            System.out.println("doc length: " + doc.getLength());
+        } catch (BadLocationException ex) {
+            System.out.println("Document: Bad Location error");
+        }
+    }
+
+    private void changeAllBits(BigInteger value) {
+        for (int i = 0; i < CurrentMaxInt.bitLength(); i++)
+            LABEL_bitGroup[i].setText(value.testBit(i) ? "1" : "0");
+    }
 
     private void changeNumberOfBits(int bitNum) {
         if (bitNum < 0)
