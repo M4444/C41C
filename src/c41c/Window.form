@@ -51,37 +51,62 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ScrollPane" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="PANEL_Bits" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="PANEL_base" min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="ComboBox" min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="CHECK_BOX_signed" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="PANEL_base" pref="77" max="32767" attributes="0"/>
+                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="ComboBox" pref="0" max="32767" attributes="0"/>
+                                  <Component id="CHECK_BOX_signed" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="LABEL_overflow_flag" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_sign_flag" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="LABEL_zero_flag" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="LABEL_parity_flag" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_carry_flag" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="LABEL_overflow_bit" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_sign_bit" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_zero_bit" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_parity_bit" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="LABEL_carry_bit" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_M_plus" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_M_minus" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_multiply" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_reciprocal" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_divide" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_percent" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_plus_minus" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_sqrt" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="BUTTON_RoL" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="BUTTON_ShL" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Mod" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="BUTTON_open_parenthesis" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Or" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Xor" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="BUTTON_F" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
                                           <Component id="BUTTON_E" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
@@ -106,12 +131,21 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="BUTTON_closed_parenthesis" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="BUTTON_RoR" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="BUTTON_LsR" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="BUTTON_AsR" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="BUTTON_Not" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="BUTTON_And" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="BUTTON_A" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Component id="BUTTON_B" min="-2" pref="38" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="BUTTON_MC" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Component id="BUTTON_backspace" min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="BUTTON_C" min="-2" pref="38" max="-2" attributes="0"/>
@@ -119,14 +153,14 @@
                                               <Component id="BUTTON_7" min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="BUTTON_B" min="-2" pref="38" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="BUTTON_backspace" min="-2" pref="38" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
                                               <Component id="BUTTON_D" min="-2" pref="38" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                                               <Component id="BUTTON_4" min="-2" pref="38" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="BUTTON_A" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                              <Component id="BUTTON_MC" min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -151,9 +185,28 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="BUTTON_equal" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_M_plus" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_M_minus" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_multiply" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_reciprocal" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_divide" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_percent" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_plus_minus" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_sqrt" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Component id="PANEL_Bits" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -166,76 +219,101 @@
               <Component id="ScrollPane" min="-2" pref="85" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="PANEL_Bits" max="32767" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="BUTTON_plus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="BUTTON_dot" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="BUTTON_0" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="BUTTON_F" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="PANEL_base" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BUTTON_M_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_M_plus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_MS" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_MR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_MC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_A" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_closed_parenthesis" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_open_parenthesis" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BUTTON_sqrt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_plus_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_CC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_CE" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_backspace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_B" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_AsR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Mod" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BUTTON_percent" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_divide" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_C" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_LsR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_ShL" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="BUTTON_reciprocal" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_multiply" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_D" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_RoR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_RoL" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="ComboBox" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BUTTON_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_E" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Not" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Xor" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="BUTTON_equal" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="BUTTON_M_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_M_plus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_MS" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_MR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_MC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_A" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="BUTTON_sqrt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_plus_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_CC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_CE" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_backspace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_B" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="BUTTON_percent" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_divide" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_C" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="BUTTON_reciprocal" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_multiply" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_D" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="PANEL_base" min="-2" pref="96" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ComboBox" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="CHECK_BOX_signed" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="BUTTON_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="BUTTON_3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="BUTTON_2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="BUTTON_1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="BUTTON_E" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="BUTTON_equal" min="-2" pref="61" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="BUTTON_plus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_dot" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_0" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_F" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_And" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_Or" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="CHECK_BOX_signed" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LABEL_carry_flag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_parity_flag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_zero_flag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_sign_flag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_overflow_flag" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="LABEL_carry_bit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_parity_bit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_zero_bit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_sign_bit" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LABEL_overflow_bit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -268,20 +346,20 @@
                       <Component id="RadioB_Oct" min="-2" max="-2" attributes="0"/>
                       <Component id="RadioB_Bin" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="RadioB_Hex" min="-2" max="-2" attributes="0"/>
+                  <Component id="RadioB_Hex" min="-2" pref="21" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="RadioB_Dec" min="-2" max="-2" attributes="0"/>
+                  <Component id="RadioB_Dec" min="-2" pref="21" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="RadioB_Oct" min="-2" max="-2" attributes="0"/>
+                  <Component id="RadioB_Oct" min="-2" pref="21" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="RadioB_Bin" min="-2" max="-2" attributes="0"/>
+                  <Component id="RadioB_Bin" min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -359,7 +437,7 @@
                   <Component id="LABEL_bit29" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit28" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="LABEL_bit27" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit26" min="-2" max="-2" attributes="0"/>
@@ -375,7 +453,7 @@
                   <Component id="LABEL_bit21" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit20" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="LABEL_bit19" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit18" min="-2" max="-2" attributes="0"/>
@@ -391,7 +469,7 @@
                   <Component id="LABEL_bit13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit12" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="LABEL_bit11" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit10" min="-2" max="-2" attributes="0"/>
@@ -407,7 +485,7 @@
                   <Component id="LABEL_bit5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="LABEL_bit3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit2" min="-2" max="-2" attributes="0"/>
@@ -415,7 +493,7 @@
                   <Component id="LABEL_bit1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit0" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1239,10 +1317,223 @@
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="signed"/>
+        <Property name="iconTextGap" type="int" value="10"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHECK_BOX_signedActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_AsR">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="AsR"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="asr" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_LsR">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="LsR"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="lsr" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_RoR">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RoR"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="ror" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_Not">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Not"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="not" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_And">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="And"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="and" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_closed_parenthesis">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=")"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value=")" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_Or">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Or"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="or" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_Xor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Xor"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="xor" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_RoL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RoL"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="rol" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_ShL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ShL"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="shl" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_Mod">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mod"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="mod" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BUTTON_open_parenthesis">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="("/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="(" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_carry_flag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_parity_flag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="P"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_zero_flag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Z"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_sign_flag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="S"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_overflow_flag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="O"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_carry_bit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans Mono" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_parity_bit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans Mono" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_zero_bit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans Mono" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_sign_bit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans Mono" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LABEL_overflow_bit">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans Mono" size="11" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
