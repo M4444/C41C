@@ -37,8 +37,10 @@ public class Window extends javax.swing.JFrame {
         OperationUnderway = false;
         SecondOperandEntered = false;
         Base = 10;
-        SecondOperand = BigInteger.ZERO;
-        Value = BigInteger.ZERO;
+        Operands = new BigInteger[2];
+        Operands[0] = BigInteger.ZERO;
+        Operands[1] = BigInteger.ZERO;
+        Active = 0;
         LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
 
         numberButtons.add(BUTTON_0);
@@ -994,13 +996,8 @@ public class Window extends javax.swing.JFrame {
         JLabel bitLabel = (JLabel)evt.getComponent();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        if (!OperationUnderway) {
-            Value = Value.flipBit(bitPos);
-            Value = adjustForOverflow(Value);
-        } else {
-            SecondOperand = SecondOperand.flipBit(bitPos);
-            SecondOperand = adjustForOverflow(SecondOperand);
-        }
+        Operands[Active] = Operands[Active].flipBit(bitPos);
+        Operands[Active] = adjustForOverflow(Operands[Active]);
         bitLabel.setText(bitLabel.getText().equals("1") ? "0" : "1");
 
         //setSize(new java.awt.Dimension(386, 396));
@@ -1177,26 +1174,17 @@ public class Window extends javax.swing.JFrame {
     private void BUTTON_AddDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_AddDigitActionPerformed
         if (DivisionByZero)
             return;
-        JButton button = (JButton) evt.getSource();
-        BigInteger newValue;
-        if (!OperationUnderway) {
-            newValue = Value.multiply(new BigInteger(Integer.toString(Base)))
-                            .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
-                Value = newValue;
-                changeAllBits(Value);
-            }
-        } else {
-            if (!SecondOperandEntered) {
-                SecondOperand = BigInteger.ZERO;
+
+        String digit = ((JButton) evt.getSource()).getName();
+        if (!SecondOperandEntered) {
+                Operands[1] = BigInteger.ZERO;
                 SecondOperandEntered = true;
-            }
-            newValue = SecondOperand.multiply(new BigInteger(Integer.toString(Base)))
-                                     .add(new BigInteger(button.getName(), Base));
-            if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
-                SecondOperand = newValue;
-                changeAllBits(SecondOperand);
-            }
+        }
+        BigInteger newValue = Operands[Active].multiply(new BigInteger(Integer.toString(Base)))
+                        .add(new BigInteger(digit, Base));
+        if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
+            Operands[Active] = newValue;
+            changeAllBits(Operands[Active]);
         }
 
         refreshTextArea();
@@ -1208,23 +1196,15 @@ public class Window extends javax.swing.JFrame {
         if (OperationUnderway && !SecondOperandEntered)
             return;
 
-        if (!OperationUnderway) {
-            Value = Value.divide(new BigInteger(Integer.toString(Base)));
-            changeAllBits(Value);
-        } else {
-            SecondOperand = SecondOperand.divide(new BigInteger(Integer.toString(Base)));
-            changeAllBits(SecondOperand);
-        }
+        Operands[Active] = Operands[Active].divide(new BigInteger(Integer.toString(Base)));
+        changeAllBits(Operands[Active]);
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
 
     private void BUTTON_ClearCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearCurrentActionPerformed
-        if (!OperationUnderway)
-            Value = BigInteger.ZERO;
-        else
-            SecondOperand = BigInteger.ZERO;
-        changeAllBits(BigInteger.ZERO);
+        Operands[Active] = BigInteger.ZERO;
+        changeAllBits(Operands[Active]);
         DivisionByZero = false;
 
         refreshTextArea();
@@ -1237,8 +1217,9 @@ public class Window extends javax.swing.JFrame {
             performOperation();
         JButton button = (JButton) evt.getSource();
         Operation = button.getName();
-        SecondOperand = Value;
+        Operands[1] = Operands[0];
         OperationUnderway = true;
+        Active = 1;
 
         System.out.println(Operation);
         refreshTextArea();
@@ -1268,26 +1249,20 @@ public class Window extends javax.swing.JFrame {
     private void CHECK_BOX_signedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECK_BOX_signedActionPerformed
         BUTTON_plus_minus.setEnabled(CHECK_BOX_signed.isSelected());
 
-        Value = adjustForOverflow(Value);
+        Operands[0] = adjustForOverflow(Operands[0]);
         if (OperationUnderway)
-            SecondOperand = adjustForOverflow(SecondOperand);
+            Operands[1] = adjustForOverflow(Operands[1]);
 
         refreshTextArea();
     }//GEN-LAST:event_CHECK_BOX_signedActionPerformed
 
     private void BUTTON_plus_minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_plus_minusActionPerformed
-        if (!OperationUnderway) {
-            if (Value.compareTo(CurrentMaxInt.negate()) != 0) {
-                Value = Value.negate();
-                changeAllBits(Value);
-            }
-        } else
-            if (SecondOperand.compareTo(CurrentMaxInt.negate()) != 0) {
-                SecondOperand = SecondOperand.negate();
-                changeAllBits(SecondOperand);
-            }
+        if (Operands[Active].compareTo(CurrentMaxInt.negate()) != 0) {
+            Operands[Active] = Operands[Active].negate();
+            changeAllBits(Operands[Active]);
 
-        refreshTextArea();
+            refreshTextArea();
+        }
     }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
 
     private void testTextArea() {
@@ -1297,7 +1272,7 @@ public class Window extends javax.swing.JFrame {
         Document doc = new javax.swing.text.DefaultStyledDocument();
         if (false)
             for (int i = 0; i < 100000; i++) {
-                Value = Value.add(BigInteger.ONE);
+                Operands[0] = Operands[0].add(BigInteger.ONE);
                 refreshTextArea();
             }
         else
@@ -1338,13 +1313,13 @@ public class Window extends javax.swing.JFrame {
             CurrentMaxInt = BigInteger.ONE;
         else
             CurrentMaxInt = BigInteger.ONE.shiftLeft(bitNum-1);
-        Value = Value.mod(CurrentMaxInt.shiftLeft(1));
-        Value = adjustForOverflow(Value);
-        changeAllBits(Value);
+        Operands[0] = Operands[0].mod(CurrentMaxInt.shiftLeft(1));
+        Operands[0] = adjustForOverflow(Operands[0]);
+        changeAllBits(Operands[0]);
         if (OperationUnderway) {
-            SecondOperand = SecondOperand.mod(CurrentMaxInt.shiftLeft(1));
-            SecondOperand = adjustForOverflow(SecondOperand);
-            changeAllBits(SecondOperand);
+            Operands[1] = Operands[1].mod(CurrentMaxInt.shiftLeft(1));
+            Operands[1] = adjustForOverflow(Operands[1]);
+            changeAllBits(Operands[1]);
         }
         refreshTextArea();
 
@@ -1427,30 +1402,31 @@ public class Window extends javax.swing.JFrame {
     private void performOperation() {
         SecondOperandEntered = false;
         OperationUnderway = false;
+        Active = 0;
         switch(Operation) {
             case "+":
-                Value = Value.add(SecondOperand);
+                Operands[0] = Operands[0].add(Operands[1]);
                 break;
             case "-":
-                Value = Value.subtract(SecondOperand);
+                Operands[0] = Operands[0].subtract(Operands[1]);
                 break;
             case "*":
-                Value = Value.multiply(SecondOperand);
+                Operands[0] = Operands[0].multiply(Operands[1]);
                 break;
             case "/":
-                if (SecondOperand.equals(BigInteger.ZERO)) {
+                if (Operands[1].equals(BigInteger.ZERO)) {
                     TextPane.setText("Division by zero is undefined.");
                     DivisionByZero = true;
                     Operation = "";
                     return;
                 }
-                Value = Value.divide(SecondOperand);
+                Operands[0] = Operands[0].divide(Operands[1]);
                 break;
             default:
                 return;
         }
-        Value = adjustForOverflow(Value);
-        changeAllBits(Value);
+        Operands[0] = adjustForOverflow(Operands[0]);
+        changeAllBits(Operands[0]);
 
         refreshTextArea();
     }
@@ -1471,9 +1447,9 @@ public class Window extends javax.swing.JFrame {
     }
 
     private void refreshTextArea() {
-        String out = Value.toString(Base);
+        String out = Operands[0].toString(Base);
         if (OperationUnderway)
-            out += '\n' + Operation + '\n' + SecondOperand.toString(Base);
+            out += '\n' + Operation + '\n' + Operands[1].toString(Base);
         TextPane.setText(out);
     }
 
@@ -1596,8 +1572,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup_base;
     // End of variables declaration//GEN-END:variables
     // My variables
-    private BigInteger Value;
-    private BigInteger SecondOperand;
+    private final BigInteger[] Operands;
+    private int Active;
     private int Base;
     private boolean SecondOperandEntered;
     private boolean OperationUnderway;
