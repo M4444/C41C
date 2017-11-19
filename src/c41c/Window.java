@@ -837,16 +837,24 @@ public class Window extends javax.swing.JFrame {
         });
 
         BUTTON_AsR.setText("AsR");
-        BUTTON_AsR.setToolTipText("");
-        BUTTON_AsR.setEnabled(false);
+        BUTTON_AsR.setToolTipText("Arithmetic shift Right");
         BUTTON_AsR.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_AsR.setName("asr"); // NOI18N
+        BUTTON_AsR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_LsR.setText("LsR");
-        BUTTON_LsR.setToolTipText("");
-        BUTTON_LsR.setEnabled(false);
+        BUTTON_LsR.setToolTipText("Logical shift Right");
         BUTTON_LsR.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_LsR.setName("lsr"); // NOI18N
+        BUTTON_LsR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_RoR.setText("RoR");
         BUTTON_RoR.setToolTipText("");
@@ -907,10 +915,14 @@ public class Window extends javax.swing.JFrame {
         BUTTON_RoL.setName("rol"); // NOI18N
 
         BUTTON_ShL.setText("ShL");
-        BUTTON_ShL.setToolTipText("");
-        BUTTON_ShL.setEnabled(false);
+        BUTTON_ShL.setToolTipText("Shift Left");
         BUTTON_ShL.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_ShL.setName("shl"); // NOI18N
+        BUTTON_ShL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_Mod.setText("Mod");
         BUTTON_Mod.setToolTipText("");
@@ -1415,6 +1427,7 @@ public class Window extends javax.swing.JFrame {
 
     private void CHECK_BOX_signedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECK_BOX_signedActionPerformed
         BUTTON_plus_minus.setEnabled(CHECK_BOX_signed.isSelected());
+        BUTTON_AsR.setEnabled(CHECK_BOX_signed.isSelected());
 
         Operands[0] = adjustForOverflow(Operands[0]);
         if (OperationUnderway)
@@ -1642,6 +1655,33 @@ public class Window extends javax.swing.JFrame {
                 break;
             case "xor":
                 Operands[0] = Operands[0].xor(Operands[1]);
+                break;
+            case "asr":
+                try {
+                    Operands[0] = Operands[0].shiftRight(Operands[1].intValueExact());
+                } catch (ArithmeticException e) {
+                    Operands[0] = Operands[0].shiftRight(Operands[0].bitLength());
+                    // If TOTAL_BIT_NUM ever gets above the maximum int value
+                    // shifring will need a better implementation
+                }
+                break;
+            case "lsr":
+                boolean signed = CHECK_BOX_signed.isSelected();
+                CHECK_BOX_signed.setSelected(false);
+                Operands[0] = adjustForOverflow(Operands[0]);
+                try {
+                    Operands[0] = Operands[0].shiftRight(Operands[1].intValueExact());
+                } catch (ArithmeticException e) {
+                    Operands[0] = BigInteger.ZERO;
+                }
+                CHECK_BOX_signed.setSelected(signed);
+                break;
+            case "shl":
+                try {
+                    Operands[0] = Operands[0].shiftLeft(Operands[1].intValueExact());
+                } catch (ArithmeticException e) {
+                    Operands[0] = BigInteger.ZERO;
+                }
                 break;
             default:
                 return;
