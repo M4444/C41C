@@ -934,9 +934,13 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_Mod.setText("Mod");
         BUTTON_Mod.setToolTipText("");
-        BUTTON_Mod.setEnabled(false);
         BUTTON_Mod.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_Mod.setName("mod"); // NOI18N
+        BUTTON_Mod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_open_parenthesis.setText("(");
         BUTTON_open_parenthesis.setToolTipText("");
@@ -1654,6 +1658,9 @@ public class Window extends javax.swing.JFrame {
                     return;
                 }
                 Operands[0] = Operands[0].divide(Operands[1]);
+                break;
+            case "mod":
+                Operands[0] = Operands[0].mod(Operands[1]);
                 break;
             case "and":
                 Operands[0] = Operands[0].and(Operands[1]);
