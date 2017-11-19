@@ -1411,23 +1411,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Not"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
         <Property name="name" type="java.lang.String" value="not" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_NotActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_And">
       <Properties>
         <Property name="text" type="java.lang.String" value="And"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
         <Property name="name" type="java.lang.String" value="and" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_OperationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_closed_parenthesis">
       <Properties>
@@ -1444,23 +1448,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Or"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
         <Property name="name" type="java.lang.String" value="or" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_OperationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_Xor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Xor"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
         <Property name="name" type="java.lang.String" value="xor" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_OperationActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_RoL">
       <Properties>

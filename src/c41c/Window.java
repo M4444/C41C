@@ -856,15 +856,23 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_Not.setText("Not");
         BUTTON_Not.setToolTipText("");
-        BUTTON_Not.setEnabled(false);
         BUTTON_Not.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_Not.setName("not"); // NOI18N
+        BUTTON_Not.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_NotActionPerformed(evt);
+            }
+        });
 
         BUTTON_And.setText("And");
         BUTTON_And.setToolTipText("");
-        BUTTON_And.setEnabled(false);
         BUTTON_And.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_And.setName("and"); // NOI18N
+        BUTTON_And.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_closed_parenthesis.setText(")");
         BUTTON_closed_parenthesis.setToolTipText("");
@@ -874,15 +882,23 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_Or.setText("Or");
         BUTTON_Or.setToolTipText("");
-        BUTTON_Or.setEnabled(false);
         BUTTON_Or.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_Or.setName("or"); // NOI18N
+        BUTTON_Or.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_Xor.setText("Xor");
         BUTTON_Xor.setToolTipText("");
-        BUTTON_Xor.setEnabled(false);
         BUTTON_Xor.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_Xor.setName("xor"); // NOI18N
+        BUTTON_Xor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_RoL.setText("RoL");
         BUTTON_RoL.setToolTipText("");
@@ -1431,6 +1447,14 @@ public class Window extends javax.swing.JFrame {
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_MinActionPerformed
 
+    private void BUTTON_NotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_NotActionPerformed
+        Operands[Active] = adjustForOverflow(Operands[Active].not());
+        //Operands[Active] = (Operands[Active].not());
+
+        changeAllBits(Operands[Active]);
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_NotActionPerformed
+
     private void testTextArea() {
         long start=System.currentTimeMillis();
 
@@ -1609,6 +1633,15 @@ public class Window extends javax.swing.JFrame {
                     return;
                 }
                 Operands[0] = Operands[0].divide(Operands[1]);
+                break;
+            case "and":
+                Operands[0] = Operands[0].and(Operands[1]);
+                break;
+            case "or":
+                Operands[0] = Operands[0].or(Operands[1]);
+                break;
+            case "xor":
+                Operands[0] = Operands[0].xor(Operands[1]);
                 break;
             default:
                 return;
