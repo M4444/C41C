@@ -1468,15 +1468,20 @@ public class Window extends javax.swing.JFrame {
     private void changeNumberOfBits(int bitNum) {
         if (bitNum < 0)
             return;
-        else if (bitNum == 0)
-            CurrentMaxInt = BigInteger.ONE;
         else
             CurrentMaxInt = BigInteger.ONE.shiftLeft(bitNum-1);
-        Operands[0] = Operands[0].mod(CurrentMaxInt.shiftLeft(1));
+
+        if (bitNum != 0)
+            Operands[0] = Operands[0].mod(CurrentMaxInt.shiftLeft(1));
+        else
+            Operands[0] = BigInteger.ZERO;
         Operands[0] = adjustForOverflow(Operands[0]);
         changeAllBits(Operands[0]);
         if (OperationUnderway) {
-            Operands[1] = Operands[1].mod(CurrentMaxInt.shiftLeft(1));
+            if (bitNum != 0)
+                Operands[1] = Operands[1].mod(CurrentMaxInt.shiftLeft(1));
+            else
+                Operands[1] = BigInteger.ZERO;
             Operands[1] = adjustForOverflow(Operands[1]);
             changeAllBits(Operands[1]);
         }
