@@ -10,7 +10,6 @@ import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
@@ -1206,7 +1205,6 @@ public class Window extends javax.swing.JFrame {
         Operands[Active] = adjustForOverflow(Operands[Active]);
         bitLabel.setText(bitLabel.getText().equals("1") ? "0" : "1");
 
-        //setSize(new java.awt.Dimension(386, 396));
         refreshTextArea();
 
         System.out.println(evt.getComponent().getName());
