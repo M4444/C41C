@@ -857,10 +857,14 @@ public class Window extends javax.swing.JFrame {
         });
 
         BUTTON_RoR.setText("RoR");
-        BUTTON_RoR.setToolTipText("");
-        BUTTON_RoR.setEnabled(false);
+        BUTTON_RoR.setToolTipText("Rotate Right");
         BUTTON_RoR.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_RoR.setName("ror"); // NOI18N
+        BUTTON_RoR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_Not.setText("Not");
         BUTTON_Not.setToolTipText("");
@@ -909,10 +913,14 @@ public class Window extends javax.swing.JFrame {
         });
 
         BUTTON_RoL.setText("RoL");
-        BUTTON_RoL.setToolTipText("");
-        BUTTON_RoL.setEnabled(false);
+        BUTTON_RoL.setToolTipText("Rotate Left");
         BUTTON_RoL.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_RoL.setName("rol"); // NOI18N
+        BUTTON_RoL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_OperationActionPerformed(evt);
+            }
+        });
 
         BUTTON_ShL.setText("ShL");
         BUTTON_ShL.setToolTipText("Shift Left");
@@ -1683,6 +1691,32 @@ public class Window extends javax.swing.JFrame {
                     Operands[0] = BigInteger.ZERO;
                 }
                 break;
+            case "ror":
+                signed = CHECK_BOX_signed.isSelected();
+                CHECK_BOX_signed.setSelected(false);
+                Operands[0] = adjustForOverflow(Operands[0]);
+                int rotation_number = Operands[1].mod(new BigInteger(CurrentMaxInt.bitLength() + "")).intValue();
+                for (int i = 0; i < rotation_number; i++) {
+                    boolean bit = Operands[0].testBit(0);
+                    Operands[0] = Operands[0].shiftRight(1);
+                    if (bit)
+                        Operands[0] = Operands[0].setBit(CurrentMaxInt.bitLength()-1);
+                }
+                CHECK_BOX_signed.setSelected(signed);
+                break;
+            case "rol":
+                signed = CHECK_BOX_signed.isSelected();
+                CHECK_BOX_signed.setSelected(false);
+                Operands[0] = adjustForOverflow(Operands[0]);
+                rotation_number = Operands[1].mod(new BigInteger(CurrentMaxInt.bitLength() + "")).intValue();
+                for (int i = 0; i < rotation_number; i++) {
+                    boolean bit = Operands[0].testBit(CurrentMaxInt.bitLength()-1);
+                    Operands[0] = Operands[0].shiftLeft(1);
+                    if (bit)
+                        Operands[0] = Operands[0].setBit(0);
+                }
+                CHECK_BOX_signed.setSelected(signed);
+                break;
             default:
                 return;
         }
@@ -1693,6 +1727,7 @@ public class Window extends javax.swing.JFrame {
     }
 
     private BigInteger adjustForOverflow(BigInteger value) {
+        value = value.mod(CurrentMaxInt.shiftLeft(1));
         boolean signed = CHECK_BOX_signed.isSelected();
         BigInteger upperBound = signed ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
         BigInteger lowerBound = signed ? CurrentMaxInt : BigInteger.ZERO;
