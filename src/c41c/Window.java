@@ -517,7 +517,6 @@ public class Window extends javax.swing.JFrame {
         TextPane.setEditable(false);
         TextPane.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         TextPane.setText("0");
-        TextPane.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         TextPane.setFocusable(false);
         ScrollPane.setViewportView(TextPane);
 
