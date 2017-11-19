@@ -11,6 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.*;
 import javax.swing.JButton;
@@ -43,22 +45,6 @@ public class Window extends javax.swing.JFrame {
         Active = 0;
         LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
 
-        numberButtons.add(BUTTON_0);
-        numberButtons.add(BUTTON_1);
-        numberButtons.add(BUTTON_2);
-        numberButtons.add(BUTTON_3);
-        numberButtons.add(BUTTON_4);
-        numberButtons.add(BUTTON_5);
-        numberButtons.add(BUTTON_6);
-        numberButtons.add(BUTTON_7);
-        numberButtons.add(BUTTON_8);
-        numberButtons.add(BUTTON_9);
-        numberButtons.add(BUTTON_A);
-        numberButtons.add(BUTTON_B);
-        numberButtons.add(BUTTON_C);
-        numberButtons.add(BUTTON_D);
-        numberButtons.add(BUTTON_E);
-        numberButtons.add(BUTTON_F);
         initComponents();
         myInitComponets();
         // Set text pane atrributes
@@ -81,7 +67,8 @@ public class Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup_base = new javax.swing.ButtonGroup();
+        BTNGroup_base = new javax.swing.ButtonGroup();
+        BTNGroup_digits = new javax.swing.ButtonGroup();
         PANEL_base = new javax.swing.JPanel();
         RadioB_Hex = new javax.swing.JRadioButton();
         RadioB_Dec = new javax.swing.JRadioButton();
@@ -192,7 +179,7 @@ public class Window extends javax.swing.JFrame {
         PANEL_base.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         PANEL_base.setPreferredSize(new java.awt.Dimension(100, 92));
 
-        buttonGroup_base.add(RadioB_Hex);
+        BTNGroup_base.add(RadioB_Hex);
         RadioB_Hex.setText("Hex");
         RadioB_Hex.setName("16"); // NOI18N
         RadioB_Hex.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +188,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup_base.add(RadioB_Dec);
+        BTNGroup_base.add(RadioB_Dec);
         RadioB_Dec.setSelected(true);
         RadioB_Dec.setText("Dec");
         RadioB_Dec.setName("10"); // NOI18N
@@ -211,7 +198,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup_base.add(RadioB_Oct);
+        BTNGroup_base.add(RadioB_Oct);
         RadioB_Oct.setText("Oct");
         RadioB_Oct.setName("8"); // NOI18N
         RadioB_Oct.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +207,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup_base.add(RadioB_Bin);
+        BTNGroup_base.add(RadioB_Bin);
         RadioB_Bin.setText("Bin");
         RadioB_Bin.setName("2"); // NOI18N
         RadioB_Bin.addActionListener(new java.awt.event.ActionListener() {
@@ -609,6 +596,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_0.setText("0");
         BUTTON_0.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_0);
         BUTTON_0.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_0.setName("0"); // NOI18N
         BUTTON_0.addActionListener(new java.awt.event.ActionListener() {
@@ -619,6 +607,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_1.setText("1");
         BUTTON_1.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_1);
         BUTTON_1.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_1.setName("1"); // NOI18N
         BUTTON_1.addActionListener(new java.awt.event.ActionListener() {
@@ -629,6 +618,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_2.setText("2");
         BUTTON_2.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_2);
         BUTTON_2.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_2.setName("2"); // NOI18N
         BUTTON_2.addActionListener(new java.awt.event.ActionListener() {
@@ -639,6 +629,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_3.setText("3");
         BUTTON_3.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_3);
         BUTTON_3.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_3.setName("3"); // NOI18N
         BUTTON_3.addActionListener(new java.awt.event.ActionListener() {
@@ -649,6 +640,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_4.setText("4");
         BUTTON_4.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_4);
         BUTTON_4.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_4.setName("4"); // NOI18N
         BUTTON_4.addActionListener(new java.awt.event.ActionListener() {
@@ -659,6 +651,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_5.setText("5");
         BUTTON_5.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_5);
         BUTTON_5.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_5.setName("5"); // NOI18N
         BUTTON_5.addActionListener(new java.awt.event.ActionListener() {
@@ -669,6 +662,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_6.setText("6");
         BUTTON_6.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_6);
         BUTTON_6.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_6.setName("6"); // NOI18N
         BUTTON_6.addActionListener(new java.awt.event.ActionListener() {
@@ -679,6 +673,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_7.setText("7");
         BUTTON_7.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_7);
         BUTTON_7.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_7.setName("7"); // NOI18N
         BUTTON_7.addActionListener(new java.awt.event.ActionListener() {
@@ -689,6 +684,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_8.setText("8");
         BUTTON_8.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_8);
         BUTTON_8.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_8.setName("8"); // NOI18N
         BUTTON_8.addActionListener(new java.awt.event.ActionListener() {
@@ -699,6 +695,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_9.setText("9");
         BUTTON_9.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_9);
         BUTTON_9.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_9.setName("9"); // NOI18N
         BUTTON_9.addActionListener(new java.awt.event.ActionListener() {
@@ -709,6 +706,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_A.setText("A");
         BUTTON_A.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_A);
         BUTTON_A.setEnabled(false);
         BUTTON_A.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_A.setName("a"); // NOI18N
@@ -720,6 +718,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_B.setText("B");
         BUTTON_B.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_B);
         BUTTON_B.setEnabled(false);
         BUTTON_B.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_B.setName("b"); // NOI18N
@@ -731,6 +730,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_C.setText("C");
         BUTTON_C.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_C);
         BUTTON_C.setEnabled(false);
         BUTTON_C.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_C.setName("c"); // NOI18N
@@ -742,6 +742,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_D.setText("D");
         BUTTON_D.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_D);
         BUTTON_D.setEnabled(false);
         BUTTON_D.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_D.setName("d"); // NOI18N
@@ -753,6 +754,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_E.setText("E");
         BUTTON_E.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_E);
         BUTTON_E.setEnabled(false);
         BUTTON_E.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_E.setName("e"); // NOI18N
@@ -764,6 +766,7 @@ public class Window extends javax.swing.JFrame {
 
         BUTTON_F.setText("F");
         BUTTON_F.setToolTipText("");
+        BTNGroup_digits.add(BUTTON_F);
         BUTTON_F.setEnabled(false);
         BUTTON_F.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_F.setName("f"); // NOI18N
@@ -1191,6 +1194,7 @@ public class Window extends javax.swing.JFrame {
             });
         }
 
+        changeBase();
         changeNumberOfBits(64);
     }
 
@@ -1307,70 +1311,9 @@ public class Window extends javax.swing.JFrame {
             return false;
         });
     }
-    private void disableButtonsForBase(int base) {
-        // Disable all
-        BUTTON_F.setEnabled(false);
-        BUTTON_E.setEnabled(false);
-        BUTTON_D.setEnabled(false);
-        BUTTON_C.setEnabled(false);
-        BUTTON_B.setEnabled(false);
-        BUTTON_A.setEnabled(false);
-        BUTTON_9.setEnabled(false);
-        BUTTON_8.setEnabled(false);
-        BUTTON_7.setEnabled(false);
-        BUTTON_6.setEnabled(false);
-        BUTTON_5.setEnabled(false);
-        BUTTON_4.setEnabled(false);
-        BUTTON_3.setEnabled(false);
-        BUTTON_2.setEnabled(false);
-        BUTTON_1.setEnabled(false);
-        BUTTON_0.setEnabled(false);
-
-        // Enable some
-        switch (base) {
-            case 16:
-                BUTTON_F.setEnabled(true);
-                BUTTON_E.setEnabled(true);
-                BUTTON_D.setEnabled(true);
-                BUTTON_C.setEnabled(true);
-                BUTTON_B.setEnabled(true);
-                BUTTON_A.setEnabled(true);
-            case 10:
-                BUTTON_9.setEnabled(true);
-                BUTTON_8.setEnabled(true);
-            case 8:
-                BUTTON_7.setEnabled(true);
-                BUTTON_6.setEnabled(true);
-                BUTTON_5.setEnabled(true);
-                BUTTON_4.setEnabled(true);
-                BUTTON_3.setEnabled(true);
-                BUTTON_2.setEnabled(true);
-            case 2:
-                BUTTON_1.setEnabled(true);
-                BUTTON_0.setEnabled(true);
-                break;
-        }
-    }
 
     private void RadioB_Group_base_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioB_Group_base_ActionPerformed
-        String base = evt.getActionCommand();
-        switch (base) {
-            case "Hex":
-                Base = 16;
-                break;
-            case "Dec":
-                Base = 10;
-                break;
-            case "Oct":
-                Base = 8;
-                break;
-            case "Bin":
-                Base = 2;
-                break;
-        }
-
-        disableButtonsForBase(Base);
-        refreshTextArea();
+        changeBase();
     }//GEN-LAST:event_RadioB_Group_base_ActionPerformed
 
     private void BUTTON_AddDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_AddDigitActionPerformed
@@ -1501,6 +1444,22 @@ public class Window extends javax.swing.JFrame {
         } catch (BadLocationException ex) {
             System.out.println("Document: Bad Location error");
         }
+    }
+
+    private void changeBase() {
+        for (AbstractButton ab : Collections.list(BTNGroup_base.getElements()))
+            if (ab.isSelected()) {
+                Base = Integer.parseInt(ab.getName());
+                break;
+            }
+
+        for (AbstractButton ab : Collections.list(BTNGroup_digits.getElements()))
+            if (Integer.parseInt(ab.getName(), 16) < Base)
+                ab.setEnabled(true);
+            else
+                ab.setEnabled(false);
+
+        refreshTextArea();
     }
 
     private void changeAllBits(BigInteger value) {
@@ -1693,6 +1652,8 @@ public class Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup BTNGroup_base;
+    private javax.swing.ButtonGroup BTNGroup_digits;
     private javax.swing.JButton BUTTON_0;
     private javax.swing.JButton BUTTON_1;
     private javax.swing.JButton BUTTON_2;
@@ -1794,7 +1755,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JRadioButton RadioB_Oct;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTextPane TextPane;
-    private javax.swing.ButtonGroup buttonGroup_base;
     // End of variables declaration//GEN-END:variables
     // My variables
     private final BigInteger[] Operands;
@@ -1808,6 +1768,4 @@ public class Window extends javax.swing.JFrame {
     private static final int TOTAL_BIT_NUM = 256;
     private final JLabel[] LABEL_bitGroup;
     BigInteger CurrentMaxInt;
-
-    private ArrayList<JButton> numberButtons = new ArrayList<JButton>();
 }

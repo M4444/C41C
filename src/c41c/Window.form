@@ -2,7 +2,9 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup_base">
+    <Component class="javax.swing.ButtonGroup" name="BTNGroup_base">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="BTNGroup_digits">
     </Component>
     <Menu class="javax.swing.JMenuBar" name="MenuBar">
       <SubComponents>
@@ -368,7 +370,7 @@
         <Component class="javax.swing.JRadioButton" name="RadioB_Hex">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup_base"/>
+              <ComponentRef name="BTNGroup_base"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hex"/>
             <Property name="name" type="java.lang.String" value="16" noResource="true"/>
@@ -380,7 +382,7 @@
         <Component class="javax.swing.JRadioButton" name="RadioB_Dec">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup_base"/>
+              <ComponentRef name="BTNGroup_base"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Dec"/>
@@ -393,7 +395,7 @@
         <Component class="javax.swing.JRadioButton" name="RadioB_Oct">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup_base"/>
+              <ComponentRef name="BTNGroup_base"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Oct"/>
             <Property name="name" type="java.lang.String" value="8" noResource="true"/>
@@ -405,7 +407,7 @@
         <Component class="javax.swing.JRadioButton" name="RadioB_Bin">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup_base"/>
+              <ComponentRef name="BTNGroup_base"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Bin"/>
             <Property name="name" type="java.lang.String" value="2" noResource="true"/>
@@ -1015,6 +1017,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1028,6 +1033,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="1"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1041,6 +1049,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1054,6 +1065,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1067,6 +1081,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1080,6 +1097,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="5"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1093,6 +1113,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="6"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1106,6 +1129,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="7"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1119,6 +1145,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="8"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1132,6 +1161,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="9"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
@@ -1145,6 +1177,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="A"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
@@ -1159,6 +1194,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="B"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
@@ -1173,6 +1211,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="C"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
@@ -1187,6 +1228,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="D"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
@@ -1201,6 +1245,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="E"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
@@ -1215,6 +1262,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="F"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="BTNGroup_digits"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
