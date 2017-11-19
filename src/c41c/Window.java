@@ -110,8 +110,8 @@ public class Window extends javax.swing.JFrame {
         TextPane = new javax.swing.JTextPane();
         BUTTON_M_minus = new javax.swing.JButton();
         BUTTON_sqrt = new javax.swing.JButton();
-        BUTTON_percent = new javax.swing.JButton();
-        BUTTON_reciprocal = new javax.swing.JButton();
+        BUTTON_Max = new javax.swing.JButton();
+        BUTTON_Min = new javax.swing.JButton();
         BUTTON_M_plus = new javax.swing.JButton();
         BUTTON_plus_minus = new javax.swing.JButton();
         BUTTON_divide = new javax.swing.JButton();
@@ -515,15 +515,23 @@ public class Window extends javax.swing.JFrame {
         BUTTON_sqrt.setEnabled(false);
         BUTTON_sqrt.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
-        BUTTON_percent.setText("%");
-        BUTTON_percent.setToolTipText("");
-        BUTTON_percent.setEnabled(false);
-        BUTTON_percent.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_Max.setText("Max");
+        BUTTON_Max.setToolTipText("");
+        BUTTON_Max.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_Max.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_MaxActionPerformed(evt);
+            }
+        });
 
-        BUTTON_reciprocal.setText("1/x");
-        BUTTON_reciprocal.setToolTipText("");
-        BUTTON_reciprocal.setEnabled(false);
-        BUTTON_reciprocal.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_Min.setText("Min");
+        BUTTON_Min.setToolTipText("");
+        BUTTON_Min.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_Min.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_MinActionPerformed(evt);
+            }
+        });
 
         BUTTON_M_plus.setText("M+");
         BUTTON_M_plus.setToolTipText("");
@@ -1071,11 +1079,11 @@ public class Window extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(BUTTON_multiply, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
-                                .addComponent(BUTTON_reciprocal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BUTTON_Min, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(BUTTON_divide, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
-                                .addComponent(BUTTON_percent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BUTTON_Max, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(BUTTON_plus_minus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
@@ -1114,7 +1122,7 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(BUTTON_Mod, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BUTTON_percent, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BUTTON_Max, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BUTTON_divide, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BUTTON_9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BUTTON_8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1124,7 +1132,7 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(BUTTON_ShL, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTTON_reciprocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BUTTON_Min, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTTON_multiply, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTTON_6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTTON_5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1408,6 +1416,21 @@ public class Window extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
 
+    private void BUTTON_MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MaxActionPerformed
+        Operands[Active] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
+        Operands[Active] = Operands[Active].subtract(BigInteger.ONE);
+
+        changeAllBits(Operands[Active]);
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_MaxActionPerformed
+
+    private void BUTTON_MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MinActionPerformed
+        Operands[Active] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt.negate() : BigInteger.ZERO;
+
+        changeAllBits(Operands[Active]);
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_MinActionPerformed
+
     private void testTextArea() {
         long start=System.currentTimeMillis();
 
@@ -1683,6 +1706,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton BUTTON_MS;
     private javax.swing.JButton BUTTON_M_minus;
     private javax.swing.JButton BUTTON_M_plus;
+    private javax.swing.JButton BUTTON_Max;
+    private javax.swing.JButton BUTTON_Min;
     private javax.swing.JButton BUTTON_Mod;
     private javax.swing.JButton BUTTON_Not;
     private javax.swing.JButton BUTTON_Or;
@@ -1698,10 +1723,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton BUTTON_minus;
     private javax.swing.JButton BUTTON_multiply;
     private javax.swing.JButton BUTTON_open_parenthesis;
-    private javax.swing.JButton BUTTON_percent;
     private javax.swing.JButton BUTTON_plus;
     private javax.swing.JButton BUTTON_plus_minus;
-    private javax.swing.JButton BUTTON_reciprocal;
     private javax.swing.JButton BUTTON_sqrt;
     private javax.swing.JCheckBox CHECK_BOX_signed;
     private javax.swing.JComboBox<String> ComboBox;

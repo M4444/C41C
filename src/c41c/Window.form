@@ -195,12 +195,12 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="BUTTON_multiply" min="-2" pref="38" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_reciprocal" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="BUTTON_Min" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="BUTTON_divide" min="-2" pref="38" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_percent" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="BUTTON_Max" min="-2" pref="38" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="BUTTON_plus_minus" min="-2" pref="38" max="-2" attributes="0"/>
@@ -248,7 +248,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="BUTTON_percent" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="BUTTON_Max" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="BUTTON_divide" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="BUTTON_9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="BUTTON_8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -261,7 +261,7 @@
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BUTTON_reciprocal" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BUTTON_Min" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BUTTON_multiply" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BUTTON_6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BUTTON_5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -895,25 +895,29 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BUTTON_percent">
+    <Component class="javax.swing.JButton" name="BUTTON_Max">
       <Properties>
-        <Property name="text" type="java.lang.String" value="%"/>
+        <Property name="text" type="java.lang.String" value="Max"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MaxActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BUTTON_reciprocal">
+    <Component class="javax.swing.JButton" name="BUTTON_Min">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1/x"/>
+        <Property name="text" type="java.lang.String" value="Min"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MinActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_M_plus">
       <Properties>
