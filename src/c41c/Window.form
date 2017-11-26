@@ -93,7 +93,7 @@
                                       <Component id="LABEL_carry_bit" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="11" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -107,8 +107,23 @@
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
+                              <Component id="BUTTON_M_plus" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_M_minus" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_multiply" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_Min" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BUTTON_divide" min="-2" pref="38" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="BUTTON_Max" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="BUTTON_F" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
                                           <Component id="BUTTON_E" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
@@ -133,7 +148,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="BUTTON_closed_parenthesis" min="-2" pref="38" max="-2" attributes="0"/>
                                           <Component id="BUTTON_RoR" min="-2" pref="38" max="-2" attributes="0"/>
@@ -183,29 +198,21 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="BUTTON_plus_minus" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_equal" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_M_plus" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_M_minus" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_multiply" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_Min" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_divide" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_Max" min="-2" pref="38" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BUTTON_plus_minus" min="-2" pref="38" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="BUTTON_sqrt" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                      <Component id="BUTTON_equal" min="-2" pref="38" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="PANEL_M" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -235,16 +242,23 @@
                           <Component id="BUTTON_closed_parenthesis" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="BUTTON_open_parenthesis" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="BUTTON_sqrt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_plus_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_CC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_CE" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_backspace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_B" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_AsR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="BUTTON_Mod" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="BUTTON_plus_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_CC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_CE" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_backspace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_B" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_AsR" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_Mod" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="PANEL_M" min="-2" pref="29" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -431,7 +445,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
                   <Component id="LABEL_bit31" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="LABEL_bit30" min="-2" max="-2" attributes="0"/>
@@ -876,6 +890,33 @@
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JPanel" name="PANEL_M">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="LABEL_M">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="name" type="java.lang.String" value="M" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+      </SubComponents>
+    </Container>
     <Component class="javax.swing.JButton" name="BUTTON_M_minus">
       <Properties>
         <Property name="text" type="java.lang.String" value="M-"/>
@@ -883,17 +924,11 @@
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="-" noResource="true"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BUTTON_sqrt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x221a;"/>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="enabled" type="boolean" value="false"/>
-        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-          <Insets value="[2, 2, 2, 2]"/>
-        </Property>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_M_ArithmeticActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_Max">
       <Properties>
@@ -926,7 +961,11 @@
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="+" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_M_ArithmeticActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_plus_minus">
       <Properties>
@@ -1287,6 +1326,9 @@
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MSActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_CC">
       <Properties>
@@ -1317,6 +1359,9 @@
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MRActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_MC">
       <Properties>
@@ -1326,6 +1371,9 @@
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MCActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_backspace">
       <Properties>
