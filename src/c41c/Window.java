@@ -37,6 +37,7 @@ public class Window extends javax.swing.JFrame {
         DivisionByZero = false;
         OperationUnderway = false;
         SecondOperandEntered = false;
+        NewRound = true;
         Base = 10;
         Operands = new BigInteger[2];
         Operands[0] = BigInteger.ZERO;
@@ -1367,12 +1368,15 @@ public class Window extends javax.swing.JFrame {
             return;
 
         String digit = ((JButton) evt.getSource()).getName();
-        if (!SecondOperandEntered) {
-                Operands[1] = BigInteger.ZERO;
+
+        if (NewRound) {
+            NewRound = false;
+            Operands[Active] = BigInteger.ZERO;
+            if (Active == 1)
                 SecondOperandEntered = true;
         }
         BigInteger newValue = Operands[Active].multiply(new BigInteger(Integer.toString(Base)))
-                        .add(new BigInteger(digit, Base));
+                                              .add(new BigInteger(digit, Base));
         if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
             Operands[Active] = newValue;
             changeAllBits(Operands[Active]);
@@ -1409,6 +1413,7 @@ public class Window extends javax.swing.JFrame {
         JButton button = (JButton) evt.getSource();
         Operation = button.getName();
         Operands[1] = Operands[0];
+        NewRound = true;
         OperationUnderway = true;
         Active = 1;
 
@@ -1637,6 +1642,7 @@ public class Window extends javax.swing.JFrame {
     }
 
     private void performOperation() {
+        NewRound = true;
         SecondOperandEntered = false;
         OperationUnderway = false;
         Active = 0;
@@ -1901,6 +1907,7 @@ public class Window extends javax.swing.JFrame {
     private final BigInteger[] Operands;
     private int Active;
     private int Base;
+    private boolean NewRound;
     private boolean SecondOperandEntered;
     private boolean OperationUnderway;
     private boolean DivisionByZero;
