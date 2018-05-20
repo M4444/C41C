@@ -44,6 +44,7 @@ public class Window extends javax.swing.JFrame {
         Operands[1] = BigInteger.ZERO;
         Operands[MEMORY] = BigInteger.ZERO;
         Active = 0;
+        Changing = 0;
         LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
 
         initComponents();
@@ -1295,8 +1296,8 @@ public class Window extends javax.swing.JFrame {
         JLabel bitLabel = (JLabel)evt.getComponent();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        Operands[Active] = Operands[Active].flipBit(bitPos);
-        Operands[Active] = adjustForOverflow(Operands[Active]);
+        Operands[Changing] = Operands[Changing].flipBit(bitPos);
+        Operands[Changing] = adjustForOverflow(Operands[Changing]);
         bitLabel.setText(bitLabel.getText().equals("1") ? "0" : "1");
 
         refreshTextArea();
@@ -1451,13 +1452,30 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTTON_ClearCurrentActionPerformed
 
     private void BUTTON_OperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_OperationActionPerformed
+        String PreviousOperation = Operation;
+
         if (DivisionByZero)
             return;
         if (SecondOperandEntered)
             performOperation();
         JButton button = (JButton) evt.getSource();
         Operation = button.getName();
-        Operands[1] = Operands[0];
+        switch (Operation) {
+            case "asr":
+            case "shl":
+            case "lsr":
+            case "rol":
+            case "ror":
+                Operands[1] = BigInteger.ONE;
+                if (PreviousOperation == Operation && OperationUnderway)
+                    performOperation();
+                Changing = 0;
+                break;
+            default:
+                Operands[1] = Operands[0];
+                Changing = 1;
+                break;
+        }
         NewRound = true;
         OperationUnderway = true;
         Active = 1;
@@ -1499,39 +1517,38 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_CHECK_BOX_signedActionPerformed
 
     private void BUTTON_plus_minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_plus_minusActionPerformed
-        if (Operands[Active].compareTo(CurrentMaxInt.negate()) != 0) {
-            Operands[Active] = Operands[Active].negate();
-            changeAllBits(Operands[Active]);
+        if (Operands[Changing].compareTo(CurrentMaxInt.negate()) != 0) {
+            Operands[Changing] = Operands[Changing].negate();
+            changeAllBits(Operands[Changing]);
 
             refreshTextArea();
         }
     }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
 
     private void BUTTON_MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MaxActionPerformed
-        Operands[Active] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
-        Operands[Active] = Operands[Active].subtract(BigInteger.ONE);
+        Operands[Changing] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
+        Operands[Changing] = Operands[Changing].subtract(BigInteger.ONE);
 
-        changeAllBits(Operands[Active]);
+        changeAllBits(Operands[Changing]);
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_MaxActionPerformed
 
     private void BUTTON_MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MinActionPerformed
-        Operands[Active] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt.negate() : BigInteger.ZERO;
+        Operands[Changing] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt.negate() : BigInteger.ZERO;
 
-        changeAllBits(Operands[Active]);
+        changeAllBits(Operands[Changing]);
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_MinActionPerformed
 
     private void BUTTON_NotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_NotActionPerformed
-        Operands[Active] = adjustForOverflow(Operands[Active].not());
-        //Operands[Active] = (Operands[Active].not());
+        Operands[Changing] = adjustForOverflow(Operands[Changing].not());
 
-        changeAllBits(Operands[Active]);
+        changeAllBits(Operands[Changing]);
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_NotActionPerformed
 
     private void BUTTON_MSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MSActionPerformed
-        Operands[MEMORY] = Operands[Active];
+        Operands[MEMORY] = Operands[Changing];
 
         if (Operands[MEMORY].compareTo(BigInteger.ZERO) != 0)
             LABEL_M.setText(LABEL_M.getName());
@@ -1549,10 +1566,10 @@ public class Window extends javax.swing.JFrame {
         JButton btn = (JButton)evt.getSource();
         switch(btn.getName()) {
             case "+":
-                Operands[MEMORY] = Operands[MEMORY].add(Operands[Active]);
+                Operands[MEMORY] = Operands[MEMORY].add(Operands[Changing]);
                 break;
             case "-":
-                Operands[MEMORY] = Operands[MEMORY].subtract(Operands[Active]);
+                Operands[MEMORY] = Operands[MEMORY].subtract(Operands[Changing]);
                 break;
             default:
                 return;
@@ -1742,6 +1759,7 @@ public class Window extends javax.swing.JFrame {
         SecondOperandEntered = false;
         OperationUnderway = false;
         Active = 0;
+        Changing = 0;
         switch(Operation) {
             case "+":
                 Operands[0] = Operands[0].add(Operands[1]);
@@ -2004,6 +2022,7 @@ public class Window extends javax.swing.JFrame {
     private final BigInteger[] Operands;
     private static final int MEMORY = 2;
     private int Active;
+    private int Changing;
     private int Base;
     private boolean NewRound;
     private boolean SecondOperandEntered;
