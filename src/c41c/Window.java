@@ -813,6 +813,11 @@ public class Window extends javax.swing.JFrame {
         BUTTON_CC.setText("C");
         BUTTON_CC.setToolTipText("");
         BUTTON_CC.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_CC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTTON_ClearActionPerformed(evt);
+            }
+        });
 
         BUTTON_CE.setText("CE");
         BUTTON_CE.setToolTipText("");
@@ -1566,6 +1571,15 @@ public class Window extends javax.swing.JFrame {
         changeAllBits(Operands[Active]);
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_MRActionPerformed
+
+    private void BUTTON_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearActionPerformed
+        Operands[0] = BigInteger.ZERO;
+        Operands[1] = BigInteger.ZERO;
+        performOperation();
+        changeAllBits(Operands[Active]);
+
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_ClearActionPerformed
 
     private void testTextArea() {
         long start=System.currentTimeMillis();
