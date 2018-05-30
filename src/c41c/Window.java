@@ -1507,7 +1507,6 @@ public class Window extends javax.swing.JFrame {
 
     private void CHECK_BOX_signedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECK_BOX_signedActionPerformed
         BUTTON_plus_minus.setEnabled(CHECK_BOX_signed.isSelected());
-        BUTTON_AsR.setEnabled(CHECK_BOX_signed.isSelected());
 
         Operands[0] = adjustForOverflow(Operands[0]);
         if (OperationUnderway)
