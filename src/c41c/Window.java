@@ -1591,6 +1591,7 @@ public class Window extends javax.swing.JFrame {
     private void BUTTON_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearActionPerformed
         Operands[0] = BigInteger.ZERO;
         Operands[1] = BigInteger.ZERO;
+        Operation = "";
         performOperation();
         changeAllBits(Operands[Active]);
 
