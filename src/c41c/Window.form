@@ -218,7 +218,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="BUTTON_6" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="BUTTON_CC" min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Component id="BUTTON_Clear" min="-2" pref="38" max="-2" attributes="0"/>
                                               <Component id="BUTTON_9" min="-2" pref="38" max="-2" attributes="0"/>
                                               <Component id="BUTTON_MS" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                                           </Group>
@@ -274,7 +274,7 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="BUTTON_plus_minus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="BUTTON_CC" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="BUTTON_Clear" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="BUTTON_CE" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="BUTTON_backspace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="BUTTON_B" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -1357,7 +1357,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_MSActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="BUTTON_CC">
+    <Component class="javax.swing.JButton" name="BUTTON_Clear">
       <Properties>
         <Property name="text" type="java.lang.String" value="C"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1378,7 +1378,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_ClearCurrentActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTTON_ClearEntryActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BUTTON_MR">

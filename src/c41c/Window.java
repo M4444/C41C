@@ -148,7 +148,7 @@ public class Window extends javax.swing.JFrame {
         BUTTON_E = new javax.swing.JButton();
         BUTTON_F = new javax.swing.JButton();
         BUTTON_MS = new javax.swing.JButton();
-        BUTTON_CC = new javax.swing.JButton();
+        BUTTON_Clear = new javax.swing.JButton();
         BUTTON_CE = new javax.swing.JButton();
         BUTTON_MR = new javax.swing.JButton();
         BUTTON_MC = new javax.swing.JButton();
@@ -820,10 +820,10 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        BUTTON_CC.setText("C");
-        BUTTON_CC.setToolTipText("");
-        BUTTON_CC.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        BUTTON_CC.addActionListener(new java.awt.event.ActionListener() {
+        BUTTON_Clear.setText("C");
+        BUTTON_Clear.setToolTipText("");
+        BUTTON_Clear.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        BUTTON_Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTTON_ClearActionPerformed(evt);
             }
@@ -834,7 +834,7 @@ public class Window extends javax.swing.JFrame {
         BUTTON_CE.setMargin(new java.awt.Insets(2, 2, 2, 2));
         BUTTON_CE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTTON_ClearCurrentActionPerformed(evt);
+                BUTTON_ClearEntryActionPerformed(evt);
             }
         });
 
@@ -1188,7 +1188,7 @@ public class Window extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(BUTTON_6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(BUTTON_CC, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(BUTTON_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(BUTTON_9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(BUTTON_MS, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(39, 39, 39))
@@ -1229,7 +1229,7 @@ public class Window extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(BUTTON_plus_minus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BUTTON_CC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BUTTON_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BUTTON_CE, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BUTTON_backspace, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(BUTTON_B, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1355,7 +1355,7 @@ public class Window extends javax.swing.JFrame {
                     default:
                         return false;
                     case KeyEvent.VK_ESCAPE:
-                        BUTTON_CC.doClick();
+                        BUTTON_Clear.doClick();
                         break;
                     case KeyEvent.VK_DELETE:
                         BUTTON_CE.doClick();
@@ -1487,13 +1487,24 @@ public class Window extends javax.swing.JFrame {
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
 
-    private void BUTTON_ClearCurrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearCurrentActionPerformed
+    private void BUTTON_ClearEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearEntryActionPerformed
         Operands[Active] = BigInteger.ZERO;
         changeAllBits(Operands[Active]);
         DivisionByZero = false;
 
         refreshTextArea();
-    }//GEN-LAST:event_BUTTON_ClearCurrentActionPerformed
+    }//GEN-LAST:event_BUTTON_ClearEntryActionPerformed
+
+	private void BUTTON_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearActionPerformed
+        Operands[0] = BigInteger.ZERO;
+        Operands[1] = BigInteger.ZERO;
+        Operation = "";
+        performOperation();
+        changeAllBits(Operands[Active]);
+        DivisionByZero = false;
+
+        refreshTextArea();
+    }//GEN-LAST:event_BUTTON_ClearActionPerformed
 
     private void BUTTON_OperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_OperationActionPerformed
         String PreviousOperation = Operation;
@@ -1631,17 +1642,6 @@ public class Window extends javax.swing.JFrame {
         changeAllBits(Operands[Active]);
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_MRActionPerformed
-
-    private void BUTTON_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearActionPerformed
-        Operands[0] = BigInteger.ZERO;
-        Operands[1] = BigInteger.ZERO;
-        Operation = "";
-        performOperation();
-        changeAllBits(Operands[Active]);
-        DivisionByZero = false;
-
-        refreshTextArea();
-    }//GEN-LAST:event_BUTTON_ClearActionPerformed
 
     private void MENU_ITEM_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ITEM_CopyActionPerformed
         StringSelection stringSelection = new StringSelection(Operands[0].toString(Base));
@@ -2002,8 +2002,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JButton BUTTON_AsR;
     private javax.swing.JButton BUTTON_B;
     private javax.swing.JButton BUTTON_C;
-    private javax.swing.JButton BUTTON_CC;
     private javax.swing.JButton BUTTON_CE;
+    private javax.swing.JButton BUTTON_Clear;
     private javax.swing.JButton BUTTON_D;
     private javax.swing.JButton BUTTON_E;
     private javax.swing.JButton BUTTON_F;
