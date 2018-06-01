@@ -1340,7 +1340,7 @@ public class Window extends javax.swing.JFrame {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher((KeyEvent e) -> {
             if (e.getID()==KeyEvent.KEY_PRESSED) {
                 if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField") &&
-                    e.getKeyCode() != 27)
+                    e.getKeyCode() != KeyEvent.VK_ESCAPE)
                     return false;
                 // Disable entry when Ctrl or Alt is being held down
                 if (e.isControlDown() || e.isAltDown())
@@ -1349,87 +1349,90 @@ public class Window extends javax.swing.JFrame {
                 switch(e.getKeyCode()) {
                     default:
                         return false;
-                    case 27:
+                    case KeyEvent.VK_ESCAPE:
                         System.out.println("Esc");
                         requestFocus();
                         break;
-                    case 8:
+                    case KeyEvent.VK_BACK_SPACE:
                         BUTTON_backspace.doClick();
                         break;
-                    case 10:
-                    case 61:
+                    case KeyEvent.VK_ENTER:
+                    case KeyEvent.VK_EQUALS:
                         BUTTON_equal.doClick();
                         // Discarded the event to avoid inadvertatnly pressing a focused button.
                         return true;
-                    case 107:
+                    case KeyEvent.VK_ADD:
+                    case KeyEvent.VK_PLUS:
                         BUTTON_plus.doClick();
                         break;
-                    case 109:
-                    case 45:
+                    case KeyEvent.VK_SUBTRACT:
+                    case KeyEvent.VK_MINUS:
                         BUTTON_minus.doClick();
                         break;
-                    case 106:
+                    case KeyEvent.VK_MULTIPLY:
+                    case KeyEvent.VK_ASTERISK:
                         BUTTON_multiply.doClick();
                         break;
-                    case 111:
+                    case KeyEvent.VK_DIVIDE:
+                    case KeyEvent.VK_SLASH:
                         BUTTON_divide.doClick();
                         break;
-                    case '0':
-                    case '0' + 48:
+                    case KeyEvent.VK_0:
+                    case KeyEvent.VK_NUMPAD0:
                         BUTTON_0.doClick();
                         break;
-                    case '1':
-                    case '1' + 48:
+                    case KeyEvent.VK_1:
+                    case KeyEvent.VK_NUMPAD1:
                         BUTTON_1.doClick();
                         break;
-                    case '2':
-                    case '2' + 48:
+                    case KeyEvent.VK_2:
+                    case KeyEvent.VK_NUMPAD2:
                         BUTTON_2.doClick();
                         break;
-                    case '3':
-                    case '3' + 48:
+                    case KeyEvent.VK_3:
+                    case KeyEvent.VK_NUMPAD3:
                         BUTTON_3.doClick();
                         break;
-                    case '4':
-                    case '4' + 48:
+                    case KeyEvent.VK_4:
+                    case KeyEvent.VK_NUMPAD4:
                         BUTTON_4.doClick();
                         break;
-                    case '5':
-                    case '5' + 48:
+                    case KeyEvent.VK_5:
+                    case KeyEvent.VK_NUMPAD5:
                         BUTTON_5.doClick();
                         break;
-                    case '6':
-                    case '6' + 48:
+                    case KeyEvent.VK_6:
+                    case KeyEvent.VK_NUMPAD6:
                         BUTTON_6.doClick();
                         break;
-                    case '7':
-                    case '7' + 48:
+                    case KeyEvent.VK_7:
+                    case KeyEvent.VK_NUMPAD7:
                         BUTTON_7.doClick();
                         break;
-                    case '8':
-                    case '8' + 48:
+                    case KeyEvent.VK_8:
+                    case KeyEvent.VK_NUMPAD8:
                         BUTTON_8.doClick();
                         break;
-                    case '9':
-                    case '9' + 48:
+                    case KeyEvent.VK_9:
+                    case KeyEvent.VK_NUMPAD9:
                         BUTTON_9.doClick();
                         break;
-                    case 'A':
+                    case KeyEvent.VK_A:
                         BUTTON_A.doClick();
                         break;
-                    case 'B':
+                    case KeyEvent.VK_B:
                         BUTTON_B.doClick();
                         break;
-                    case 'C':
+                    case KeyEvent.VK_C:
                         BUTTON_C.doClick();
                         break;
-                    case 'D':
+                    case KeyEvent.VK_D:
                         BUTTON_D.doClick();
                         break;
-                    case 'E':
+                    case KeyEvent.VK_E:
                         BUTTON_E.doClick();
                         break;
-                    case 'F':
+                    case KeyEvent.VK_F:
                         BUTTON_F.doClick();
                         break;
                 }
