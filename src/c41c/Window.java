@@ -7,10 +7,15 @@
 package c41c;
 
 import java.awt.KeyboardFocusManager;
+import java.awt.Toolkit;
+import java.awt.datatransfer.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.*;
@@ -49,6 +54,8 @@ public class Window extends javax.swing.JFrame {
 
         initComponents();
         myInitComponets();
+        // Set clipboard
+        Clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         // Set text pane atrributes
         SimpleAttributeSet attribs = new SimpleAttributeSet();
         StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_RIGHT);
@@ -173,6 +180,8 @@ public class Window extends javax.swing.JFrame {
         MenuBar = new javax.swing.JMenuBar();
         MENU_View = new javax.swing.JMenu();
         MENU_Edit = new javax.swing.JMenu();
+        MENU_ITEM_Copy = new javax.swing.JMenuItem();
+        MENU_ITEM_Paste = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("C41C");
@@ -1030,7 +1039,29 @@ public class Window extends javax.swing.JFrame {
         MENU_View.setText("View");
         MenuBar.add(MENU_View);
 
+        MENU_Edit.setMnemonic('E');
         MENU_Edit.setText("Edit");
+
+        MENU_ITEM_Copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        MENU_ITEM_Copy.setMnemonic('C');
+        MENU_ITEM_Copy.setText("Copy");
+        MENU_ITEM_Copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_ITEM_CopyActionPerformed(evt);
+            }
+        });
+        MENU_Edit.add(MENU_ITEM_Copy);
+
+        MENU_ITEM_Paste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        MENU_ITEM_Paste.setMnemonic('P');
+        MENU_ITEM_Paste.setText("Paste");
+        MENU_ITEM_Paste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENU_ITEM_PasteActionPerformed(evt);
+            }
+        });
+        MENU_Edit.add(MENU_ITEM_Paste);
+
         MenuBar.add(MENU_Edit);
 
         setJMenuBar(MenuBar);
@@ -1311,6 +1342,9 @@ public class Window extends javax.swing.JFrame {
                 if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField") &&
                     e.getKeyCode() != 27)
                     return false;
+                // Disable entry when Ctrl or Alt is being held down
+                if (e.isControlDown() || e.isAltDown())
+                    return false;
                 System.out.println("Key Code: " + e.getKeyCode());
                 switch(e.getKeyCode()) {
                     default:
@@ -1325,7 +1359,8 @@ public class Window extends javax.swing.JFrame {
                     case 10:
                     case 61:
                         BUTTON_equal.doClick();
-                        break;
+                        // Discarded the event to avoid inadvertatnly pressing a focused button.
+                        return true;
                     case 107:
                         BUTTON_plus.doClick();
                         break;
@@ -1398,8 +1433,7 @@ public class Window extends javax.swing.JFrame {
                         BUTTON_F.doClick();
                         break;
                 }
-                //Return 'true' if you want to discard the event.
-                return true;
+                // Return 'true' if the event should be discarded.
             }
             return false;
         });
@@ -1597,6 +1631,33 @@ public class Window extends javax.swing.JFrame {
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_ClearActionPerformed
+
+    private void MENU_ITEM_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ITEM_CopyActionPerformed
+        StringSelection stringSelection = new StringSelection(Operands[0].toString(Base));
+        Clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_MENU_ITEM_CopyActionPerformed
+
+    private void MENU_ITEM_PasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ITEM_PasteActionPerformed
+        Transferable t = Clipboard.getContents(this);
+        if (t == null)
+            // The clipboard is currently unavailable.
+            return;
+        try {
+            String number = (String) t.getTransferData(DataFlavor.stringFlavor);
+            Operands[Active] = new BigInteger(number, Base);
+            if (Active == 1)
+                SecondOperandEntered = true;
+            changeAllBits(Operands[Active]);
+
+            refreshTextArea();
+        } catch (NumberFormatException e) {
+            System.out.println("Bad number format");
+        } catch (UnsupportedFlavorException e) {
+            System.out.println("Clipboard doesn't contain a string");
+        } catch (IOException e) {
+            System.out.println("Clipboard doesn't contain a string anymore");
+        }
+    }//GEN-LAST:event_MENU_ITEM_PasteActionPerformed
 
     private void testTextArea() {
         long start=System.currentTimeMillis();
@@ -2006,6 +2067,8 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JLabel LABEL_zero_bit;
     private javax.swing.JLabel LABEL_zero_flag;
     private javax.swing.JMenu MENU_Edit;
+    private javax.swing.JMenuItem MENU_ITEM_Copy;
+    private javax.swing.JMenuItem MENU_ITEM_Paste;
     private javax.swing.JMenu MENU_View;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JPanel PANEL_Bits;
@@ -2019,6 +2082,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextPane TextPane;
     // End of variables declaration//GEN-END:variables
     // My variables
+    private final Clipboard Clipboard;
     private final BigInteger[] Operands;
     private static final int MEMORY = 2;
     private int Active;
