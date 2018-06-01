@@ -1638,6 +1638,7 @@ public class Window extends javax.swing.JFrame {
         Operation = "";
         performOperation();
         changeAllBits(Operands[Active]);
+        DivisionByZero = false;
 
         refreshTextArea();
     }//GEN-LAST:event_BUTTON_ClearActionPerformed
