@@ -1339,9 +1339,14 @@ public class Window extends javax.swing.JFrame {
     private void addKeyDispatcher() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher((KeyEvent e) -> {
             if (e.getID()==KeyEvent.KEY_PRESSED) {
-                if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField") &&
-                    e.getKeyCode() != KeyEvent.VK_ESCAPE)
+                // Disable entry when 'bit length' text field is focused
+                if (getFocusOwner().getClass().getSimpleName().equals("BorderlessTextField")) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        System.out.println("Esc");
+                        requestFocus();
+                    }
                     return false;
+                }
                 // Disable entry when Ctrl or Alt is being held down
                 if (e.isControlDown() || e.isAltDown())
                     return false;
@@ -1350,8 +1355,10 @@ public class Window extends javax.swing.JFrame {
                     default:
                         return false;
                     case KeyEvent.VK_ESCAPE:
-                        System.out.println("Esc");
-                        requestFocus();
+                        BUTTON_CC.doClick();
+                        break;
+                    case KeyEvent.VK_DELETE:
+                        BUTTON_CE.doClick();
                         break;
                     case KeyEvent.VK_BACK_SPACE:
                         BUTTON_backspace.doClick();
