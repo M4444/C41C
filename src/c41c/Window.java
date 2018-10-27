@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Miloš Stojanović
+ * Copyright (C) 2017-2019 Miloš Stojanović
  *
  * SPDX-License-Identifier: GPL-2.0-only
  */
@@ -14,8 +14,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.*;
@@ -28,28 +26,12 @@ import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-/**
- *
- * @author M
- */
 public class Window extends javax.swing.JFrame {
 
     /**
      * Creates new form Window
      */
     public Window() {
-        Operation = "";
-        DivisionByZero = false;
-        OperationUnderway = false;
-        SecondOperandEntered = false;
-        NewRound = true;
-        Base = 10;
-        Operands = new BigInteger[3];
-        Operands[0] = BigInteger.ZERO;
-        Operands[1] = BigInteger.ZERO;
-        Operands[MEMORY] = BigInteger.ZERO;
-        Active = 0;
-        Changing = 0;
         LABEL_bitGroup = new JLabel[TOTAL_BIT_NUM];
 
         initComponents();
@@ -1319,6 +1301,8 @@ public class Window extends javax.swing.JFrame {
             });
         }
 
+        backend = new Calculator(this, CHECK_BOX_signed.isSelected());
+
         changeBase();
         changeNumberOfBits(64);
     }
@@ -1327,8 +1311,7 @@ public class Window extends javax.swing.JFrame {
         JLabel bitLabel = (JLabel)evt.getComponent();
         int bitPos = Integer.parseInt(bitLabel.getName());
 
-        Operands[Changing] = Operands[Changing].flipBit(bitPos);
-        Operands[Changing] = adjustForOverflow(Operands[Changing]);
+        backend.flipBit(bitPos);
         bitLabel.setText(bitLabel.getText().equals("1") ? "0" : "1");
 
         refreshTextArea();
@@ -1454,93 +1437,32 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_RadioB_Group_base_ActionPerformed
 
     private void BUTTON_AddDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_AddDigitActionPerformed
-        if (DivisionByZero)
-            return;
-
         String digit = ((JButton) evt.getSource()).getName();
 
-        if (NewRound) {
-            NewRound = false;
-            Operands[Active] = BigInteger.ZERO;
-            if (Active == 1)
-                SecondOperandEntered = true;
-        }
-        BigInteger newValue = Operands[Active].multiply(new BigInteger(Integer.toString(Base)))
-                                              .add(new BigInteger(digit, Base));
-        if (newValue.compareTo(adjustForOverflow(newValue)) == 0) {
-            Operands[Active] = newValue;
-            changeAllBits(Operands[Active]);
-        }
-
-        refreshTextArea();
+        backend.addDigit(digit);
     }//GEN-LAST:event_BUTTON_AddDigitActionPerformed
 
     private void BUTTON_RemoveDigitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_RemoveDigitActionPerformed
-        if (DivisionByZero)
-            return;
-        if (OperationUnderway && !SecondOperandEntered)
-            return;
-
-        Operands[Active] = Operands[Active].divide(new BigInteger(Integer.toString(Base)));
-        changeAllBits(Operands[Active]);
-
-        refreshTextArea();
+        backend.removeDigit();
     }//GEN-LAST:event_BUTTON_RemoveDigitActionPerformed
 
     private void BUTTON_ClearEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearEntryActionPerformed
-        Operands[Active] = BigInteger.ZERO;
-        changeAllBits(Operands[Active]);
-        DivisionByZero = false;
-
-        refreshTextArea();
+        backend.clearEntry();
     }//GEN-LAST:event_BUTTON_ClearEntryActionPerformed
 
 	private void BUTTON_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_ClearActionPerformed
-        Operands[0] = BigInteger.ZERO;
-        Operands[1] = BigInteger.ZERO;
-        Operation = "";
-        performOperation();
-        changeAllBits(Operands[Active]);
-        DivisionByZero = false;
-
-        refreshTextArea();
+        backend.clear();
     }//GEN-LAST:event_BUTTON_ClearActionPerformed
 
     private void BUTTON_OperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_OperationActionPerformed
-        String PreviousOperation = Operation;
-
-        if (DivisionByZero)
-            return;
-        if (SecondOperandEntered)
-            performOperation();
         JButton button = (JButton) evt.getSource();
-        Operation = button.getName();
-        switch (Operation) {
-            case "asr":
-            case "shl":
-            case "lsr":
-            case "rol":
-            case "ror":
-                Operands[1] = BigInteger.ONE;
-                if (PreviousOperation == Operation && OperationUnderway)
-                    performOperation();
-                Changing = 0;
-                break;
-            default:
-                Operands[1] = Operands[0];
-                Changing = 1;
-                break;
-        }
-        NewRound = true;
-        OperationUnderway = true;
-        Active = 1;
+        backend.enterOperation(button.getName());
 
-        System.out.println(Operation);
-        refreshTextArea();
+        System.out.println(button.getName());
     }//GEN-LAST:event_BUTTON_OperationActionPerformed
 
     private void BUTTON_equalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_equalActionPerformed
-        performOperation();
+        backend.performOperation();
     }//GEN-LAST:event_BUTTON_equalActionPerformed
 
     private void ComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxActionPerformed
@@ -1561,90 +1483,56 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxActionPerformed
 
     private void CHECK_BOX_signedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECK_BOX_signedActionPerformed
-        BUTTON_plus_minus.setEnabled(CHECK_BOX_signed.isSelected());
+        boolean signed = CHECK_BOX_signed.isSelected();
 
-        Operands[0] = adjustForOverflow(Operands[0]);
-        if (OperationUnderway)
-            Operands[1] = adjustForOverflow(Operands[1]);
-
-        refreshTextArea();
+        BUTTON_plus_minus.setEnabled(signed);
+        backend.setSigned(signed);
     }//GEN-LAST:event_CHECK_BOX_signedActionPerformed
 
     private void BUTTON_plus_minusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_plus_minusActionPerformed
-        if (Operands[Changing].compareTo(CurrentMaxInt.negate()) != 0) {
-            Operands[Changing] = Operands[Changing].negate();
-            changeAllBits(Operands[Changing]);
-
-            refreshTextArea();
-        }
+        backend.plusMinus();
     }//GEN-LAST:event_BUTTON_plus_minusActionPerformed
 
     private void BUTTON_MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MaxActionPerformed
-        Operands[Changing] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
-        Operands[Changing] = Operands[Changing].subtract(BigInteger.ONE);
-
-        changeAllBits(Operands[Changing]);
-        refreshTextArea();
+        backend.max();
     }//GEN-LAST:event_BUTTON_MaxActionPerformed
 
     private void BUTTON_MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MinActionPerformed
-        Operands[Changing] = CHECK_BOX_signed.isSelected() ? CurrentMaxInt.negate() : BigInteger.ZERO;
-
-        changeAllBits(Operands[Changing]);
-        refreshTextArea();
+        backend.min();
     }//GEN-LAST:event_BUTTON_MinActionPerformed
 
     private void BUTTON_NotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_NotActionPerformed
-        Operands[Changing] = adjustForOverflow(Operands[Changing].not());
-
-        changeAllBits(Operands[Changing]);
-        refreshTextArea();
+        backend.not();
     }//GEN-LAST:event_BUTTON_NotActionPerformed
 
     private void BUTTON_MSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MSActionPerformed
-        Operands[MEMORY] = Operands[Changing];
-
-        if (Operands[MEMORY].compareTo(BigInteger.ZERO) != 0)
-            LABEL_M.setText(LABEL_M.getName());
-        else
-            LABEL_M.setText("");
+        backend.MS();
     }//GEN-LAST:event_BUTTON_MSActionPerformed
 
     private void BUTTON_MCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MCActionPerformed
-        Operands[MEMORY] = BigInteger.ZERO;
-
-        LABEL_M.setText("");
+        backend.MC();
     }//GEN-LAST:event_BUTTON_MCActionPerformed
 
     private void BUTTON_M_ArithmeticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_M_ArithmeticActionPerformed
         JButton btn = (JButton)evt.getSource();
-        switch(btn.getName()) {
-            case "+":
-                Operands[MEMORY] = Operands[MEMORY].add(Operands[Changing]);
-                break;
-            case "-":
-                Operands[MEMORY] = Operands[MEMORY].subtract(Operands[Changing]);
-                break;
-            default:
-                return;
-        }
-        Operands[MEMORY] = adjustForOverflow(Operands[MEMORY]);
 
-        if (Operands[MEMORY].compareTo(BigInteger.ZERO) != 0)
-            LABEL_M.setText(LABEL_M.getName());
-        else
-            LABEL_M.setText("");
+        backend.MArithmetic(btn.getName());
     }//GEN-LAST:event_BUTTON_M_ArithmeticActionPerformed
 
     private void BUTTON_MRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTTON_MRActionPerformed
-        Operands[Active] = adjustForOverflow(Operands[MEMORY]);
-
-        changeAllBits(Operands[Active]);
-        refreshTextArea();
+        backend.MR();
     }//GEN-LAST:event_BUTTON_MRActionPerformed
 
+    public void setMLabel() {
+        LABEL_M.setText(LABEL_M.getName());
+    }
+
+    public void clearMLabel() {
+        LABEL_M.setText("");
+    }
+
     private void MENU_ITEM_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENU_ITEM_CopyActionPerformed
-        StringSelection stringSelection = new StringSelection(Operands[0].toString(Base));
+        StringSelection stringSelection = new StringSelection(backend.getFirstOperand());
         Clipboard.setContents(stringSelection, null);
     }//GEN-LAST:event_MENU_ITEM_CopyActionPerformed
 
@@ -1655,10 +1543,7 @@ public class Window extends javax.swing.JFrame {
             return;
         try {
             String number = (String) t.getTransferData(DataFlavor.stringFlavor);
-            Operands[Active] = new BigInteger(number, Base);
-            if (Active == 1)
-                SecondOperandEntered = true;
-            changeAllBits(Operands[Active]);
+            backend.setActiveOperand(number);
 
             refreshTextArea();
         } catch (NumberFormatException e) {
@@ -1677,7 +1562,8 @@ public class Window extends javax.swing.JFrame {
         Document doc = new javax.swing.text.DefaultStyledDocument();
         if (false)
             for (int i = 0; i < 100000; i++) {
-                Operands[0] = Operands[0].add(BigInteger.ONE);
+                // Operands move to backend
+                //Operands[0] = Operands[0].add(BigInteger.ONE);
                 refreshTextArea();
             }
         else
@@ -1707,48 +1593,39 @@ public class Window extends javax.swing.JFrame {
     }
 
     private void changeBase() {
+        int base = 10;
+
         for (AbstractButton ab : Collections.list(BTNGroup_base.getElements()))
             if (ab.isSelected()) {
-                Base = Integer.parseInt(ab.getName());
+                base = Integer.parseInt(ab.getName());
                 break;
             }
 
         for (AbstractButton ab : Collections.list(BTNGroup_digits.getElements()))
-            if (Integer.parseInt(ab.getName(), 16) < Base)
+            if (Integer.parseInt(ab.getName(), 16) < base)
                 ab.setEnabled(true);
             else
                 ab.setEnabled(false);
 
-        refreshTextArea();
+        backend.setBase(base);
     }
 
-    private void changeAllBits(BigInteger value) {
-        for (int i = 0; i < CurrentMaxInt.bitLength(); i++)
+    public void changeAllBits(BigInteger value) {
+        for (int i = 0; i < BitLength; i++)
             LABEL_bitGroup[i].setText(value.testBit(i) ? "1" : "0");
     }
 
     private void changeNumberOfBits(int bitNum) {
         if (bitNum < 0)
             return;
-        else
-            CurrentMaxInt = BigInteger.ONE.shiftLeft(bitNum-1);
 
-        if (bitNum != 0)
-            Operands[0] = Operands[0].mod(CurrentMaxInt.shiftLeft(1));
-        else
-            Operands[0] = BigInteger.ZERO;
-        Operands[0] = adjustForOverflow(Operands[0]);
-        changeAllBits(Operands[0]);
-        if (OperationUnderway) {
-            if (bitNum != 0)
-                Operands[1] = Operands[1].mod(CurrentMaxInt.shiftLeft(1));
-            else
-                Operands[1] = BigInteger.ZERO;
-            Operands[1] = adjustForOverflow(Operands[1]);
-            changeAllBits(Operands[1]);
-        }
-        refreshTextArea();
+        BitLength = bitNum;
+        backend.changeNumberOfBits(bitNum);
 
+        changeBitLayout(bitNum);
+    }
+
+    private void changeBitLayout(int bitNum) {
         int rowNum = (int) Math.ceil(bitNum/32.0);
         //setSize(415+10, 406+10+23*(rowNum-1));
         setSize(415, 406+23*(rowNum-1));
@@ -1826,125 +1703,14 @@ public class Window extends javax.swing.JFrame {
             .addGroup(Alignment.TRAILING, vsg));
     }
 
-    private void performOperation() {
-        NewRound = true;
-        SecondOperandEntered = false;
-        OperationUnderway = false;
-        Active = 0;
-        Changing = 0;
-        switch(Operation) {
-            case "+":
-                Operands[0] = Operands[0].add(Operands[1]);
-                break;
-            case "-":
-                Operands[0] = Operands[0].subtract(Operands[1]);
-                break;
-            case "*":
-                Operands[0] = Operands[0].multiply(Operands[1]);
-                break;
-            case "/":
-                if (Operands[1].equals(BigInteger.ZERO)) {
-                    TextPane.setText("Division by zero is undefined.");
-                    DivisionByZero = true;
-                    Operation = "";
-                    return;
-                }
-                Operands[0] = Operands[0].divide(Operands[1]);
-                break;
-            case "mod":
-                Operands[0] = Operands[0].mod(Operands[1]);
-                break;
-            case "and":
-                Operands[0] = Operands[0].and(Operands[1]);
-                break;
-            case "or":
-                Operands[0] = Operands[0].or(Operands[1]);
-                break;
-            case "xor":
-                Operands[0] = Operands[0].xor(Operands[1]);
-                break;
-            case "asr":
-                try {
-                    Operands[0] = Operands[0].shiftRight(Operands[1].intValueExact());
-                } catch (ArithmeticException e) {
-                    Operands[0] = Operands[0].shiftRight(Operands[0].bitLength());
-                    // If TOTAL_BIT_NUM ever gets above the maximum int value
-                    // shifring will need a better implementation
-                }
-                break;
-            case "lsr":
-                boolean signed = CHECK_BOX_signed.isSelected();
-                CHECK_BOX_signed.setSelected(false);
-                Operands[0] = adjustForOverflow(Operands[0]);
-                try {
-                    Operands[0] = Operands[0].shiftRight(Operands[1].intValueExact());
-                } catch (ArithmeticException e) {
-                    Operands[0] = BigInteger.ZERO;
-                }
-                CHECK_BOX_signed.setSelected(signed);
-                break;
-            case "shl":
-                try {
-                    Operands[0] = Operands[0].shiftLeft(Operands[1].intValueExact());
-                } catch (ArithmeticException e) {
-                    Operands[0] = BigInteger.ZERO;
-                }
-                break;
-            case "ror":
-                signed = CHECK_BOX_signed.isSelected();
-                CHECK_BOX_signed.setSelected(false);
-                Operands[0] = adjustForOverflow(Operands[0]);
-                int rotation_number = Operands[1].mod(new BigInteger(CurrentMaxInt.bitLength() + "")).intValue();
-                for (int i = 0; i < rotation_number; i++) {
-                    boolean bit = Operands[0].testBit(0);
-                    Operands[0] = Operands[0].shiftRight(1);
-                    if (bit)
-                        Operands[0] = Operands[0].setBit(CurrentMaxInt.bitLength()-1);
-                }
-                CHECK_BOX_signed.setSelected(signed);
-                break;
-            case "rol":
-                signed = CHECK_BOX_signed.isSelected();
-                CHECK_BOX_signed.setSelected(false);
-                Operands[0] = adjustForOverflow(Operands[0]);
-                rotation_number = Operands[1].mod(new BigInteger(CurrentMaxInt.bitLength() + "")).intValue();
-                for (int i = 0; i < rotation_number; i++) {
-                    boolean bit = Operands[0].testBit(CurrentMaxInt.bitLength()-1);
-                    Operands[0] = Operands[0].shiftLeft(1);
-                    if (bit)
-                        Operands[0] = Operands[0].setBit(0);
-                }
-                CHECK_BOX_signed.setSelected(signed);
-                break;
-            default:
-                return;
-        }
-        Operands[0] = adjustForOverflow(Operands[0]);
-        changeAllBits(Operands[0]);
-
-        refreshTextArea();
+    public void displayDivByZeroWarning() {
+        TextPane.setText("Division by zero is undefined.");
     }
 
-    private BigInteger adjustForOverflow(BigInteger value) {
-        value = value.mod(CurrentMaxInt.shiftLeft(1));
-        boolean signed = CHECK_BOX_signed.isSelected();
-        BigInteger upperBound = signed ? CurrentMaxInt : CurrentMaxInt.shiftLeft(1);
-        BigInteger lowerBound = signed ? CurrentMaxInt : BigInteger.ZERO;
-        BigInteger overflow = value.subtract(upperBound);
-        BigInteger underflow = value.add(lowerBound);
-
-        if (overflow.compareTo(BigInteger.ZERO) >= 0)
-            value = overflow.subtract(lowerBound);
-        else if (underflow.compareTo(BigInteger.ZERO) < 0)
-            value = underflow.add(upperBound);
-
-        return value;
-    }
-
-    private void refreshTextArea() {
-        String out = Operands[0].toString(Base);
-        if (OperationUnderway)
-            out += '\n' + Operation + '\n' + Operands[1].toString(Base);
+    public void refreshTextArea() {
+        String out = backend.getFirstOperand();
+        if (backend.isOperationUnderway())
+            out += '\n' + backend.getOperation() + '\n' + backend.getSecondOperand();
         TextPane.setText(out);
     }
 
@@ -2093,19 +1859,10 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextPane TextPane;
     // End of variables declaration//GEN-END:variables
     // My variables
+    private Calculator backend;
     private final Clipboard Clipboard;
-    private final BigInteger[] Operands;
-    private static final int MEMORY = 2;
-    private int Active;
-    private int Changing;
-    private int Base;
-    private boolean NewRound;
-    private boolean SecondOperandEntered;
-    private boolean OperationUnderway;
-    private boolean DivisionByZero;
-    private String Operation;
     // Bits
+    int BitLength;
     private static final int TOTAL_BIT_NUM = 256;
     private final JLabel[] LABEL_bitGroup;
-    BigInteger CurrentMaxInt;
 }
